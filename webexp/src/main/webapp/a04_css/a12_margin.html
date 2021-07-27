@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+
+/*
+#margin 옵션
+1. margin-left
+2. margin-rignt
+3. margin-top
+4. margin-bottom
+
+응용) 두번째 div에 왼쪽 여백을 50px로 처리되게 하기(js로) (5조)
+
+*/
+div {
+	width:50px; height:50px;
+	border:1px solid green;
+	margin-top:50px;
+}
+
+body {
+	margin:0px;
+}
+</style>
+</head>
+<body>
+	<!-- div는 블럭태그임 
+	margin은 브라우저와 객체? 사이 길이 지정-->
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+<script type="text/javascript">
+
+// 응용) 두번째 div에 왼쪽 여백을 50px로 처리되게 하기(js로) (5조)
+var divObjs = document.querySelectorAll("div");
+divObjs[1].style.marginLeft = "50px";
+
+// 두번째 자식의 왼쪽 여백을 지정 
+var div2Obj = document.querySelector("div:nth-child(2)");
+div2Obj.style.marginLeft = "50px";
+div2Obj.style.backgroundColor = "orange";
+
+
+
+
+</script>
+</html>

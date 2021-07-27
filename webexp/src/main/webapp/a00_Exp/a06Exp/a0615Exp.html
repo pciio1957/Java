@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+
+#정리문제
+1. html의 body에 있는 h2에 시작합니다! 라는 문자열을 js로 처리하고자한다.
+코드를 기술하기
+2. js의 5가지 데이터 유형을 간단한 기본 예제와 함께 기술하기
+3. js의 객체 생성방법 2가지는 기술하기
+4. [1단계] h3으로 red라고 되어있는 문자를 클릭시 배경색상이 red로 변경되게 하기
+	[2단계] 해당 내용을 클릭시마다 무지개 색상 7가지로 글자와, 배경색이 변경되도록 하기
+	hint) var colors = ['red', 'orange' ...];
+	obj.style.backgroundColor = 'red';
+5. BOM과 DOM의 차이점 기술하기
+6. js에서 이벤트 처리의 3가지 구성요소와 코드를 통한 처리방법 기술하기 
+
+
+-->
+
+<script type="text/javascript">
+
+// 1.
+var start = "시작합니다!";
+document.write("<h2> " + start + " </h2><br>");
+
+// h2를 body에 쓰고 script를 /body아래에 body의 h2를 객체를 가져옴
+// 밑에는 한번에 사용하는 방법 
+document.querySelector("h2").innerHTML = "h2시작힙니다";
+
+// 2. 
+var num1 = 33; // 	1) 숫자형 데이터
+var num2 = 20; 
+document.write("숫자형 데이터 더하기 : " + (num1+num2) + "<br>"); 
+
+var str1 = "오늘 날씨는";  // 2) 문자열 데이터 
+var str2 = '비가 옵니다';
+document.write("문자열 데이터 합치기 : " + (str1 + str2) + "<br>");
+
+var minus = function(n1, n2) { // 3) 함수형 데이터 
+	console.log(n1-n2);
+	return n1-n2;
+}
+document.write("함수형 데이터 결과 : "  + minus(num1, num2) + "<br>");
+
+
+var isMax = num1>num2; // 4) boolean형 데이터
+document.write("boolean형 데이터 결과 : " + isMax + "<br>");
+
+
+var person = {name:"오길동", hp:"010-0000-000"}; // 5) json 객체형 데이터
+document.write("json형 데이터 결과 : " + person.name + "<br>");
+document.write("json형 데이터 결과 : " + person.hp + "<br>");
+
+/*
+ * 
+ 
+ 
+ 객체.innerHTML : 해당 <h2> 입력할내용 </h2> 에서
+ 			입력할 내용 부분을 변경
+ 			포함할 내용이 h2 table 등 태그내용일 때
+ 			해당 코드의 기본 속성을 랜더링처리한다.
+ 객체.innerText : 해당 
+ 
+ 3. 객체 생성 방법 2가지
+ 	1) json 데이터를 이용해 객체생성
+ 	var product2 = 
+	{name: "볼펜", price:1200, cnt:5, // 속성, 속성값 지정
+		show:function() {
+			// js의 필드에는 반드시 this를 선언해야한다. 
+			console.log("물건명 : " + this.name);
+			console.log("가격 : " + this.price);
+			console.log("갯수 : " + this.cnt);
+			document.write("Pro2 물건명 : " + this.name);
+			document.write("Pro2 가격 : " + this.price);
+			document.write("Pro2 갯수 : " + this.cnt);
+			document.write("Pro2 총계 : " + (this.price * this.cnt));
+		}
+};
+ 	product2.show();
+ 	
+ 	2) 생성자 형태로 객체 생성
+ 	function Product(name, price, cnt) {
+	this.name = name;
+	this.price = price;
+	this.cnt = cnt;
+	
+	this.show = function() {
+		document.write("<h2> Product 함수 </h2>");
+		document.write("Pro1 물건명 : " + this.name);
+		document.write("Pro1 가격 : " + this.price);
+		document.write("Pro1 갯수 : " + this.cnt);
+		document.write("Pro1 총계 : " + (this.price * this.cnt));
+	}
+}
+ 	
+ 	var p01 = new Product("볼펜", 1800, 6);
+ 	p01.show();
+ 	
+ 	5. 
+ 	BOM : 브라우저를 객체화하여 새창을 띄워서 보여주는 방법
+ 	DOM : 현재 출력된 문서에서 보여주는 방법으로 
+ 	BOM/DOM은 결과를 출력하는 곳이 다르다
+ 	
+ 	6. 
+ 		1) 대상 객체 지정
+ 		2) 대상 객체에 이벤트 속성 지정
+ 		3) 해당 이벤트시 실행될 함수 선언
+ 	
+ 		1)
+ 		var txtObj = document.querySelector("h2");
+ 		2) 해당 h2를 클릭하면 onclick()이 수행처리되어
+ 			정의된 이벤트 핸들러 함수가 호출된다. 
+ 		txtObj.mouseover = changeColor;
+ 		3) 
+ 		function changeColor() {
+			this.style.backgroundColor = 'red';
+		}
+
+*/
+
+// 4. 
+var txtObj = document.querySelector("h2");
+var txtObj2 = document.querySelector("h3");
+var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'white'];
+var	idx = 0;
+
+ 	function txtClick1(obj) {
+ 		obj.style.backgroundColor = 'red';
+ 	}
+ 	
+ 	// 클릭시마다 index가 변경될 수 있게 함수 외부에 전역변수로 idx 선언
+ 	// 인덱스가 누를수록 늘어나므로 %(나머지)를 이용해서 계쏙 값이 나오게 함
+ 	// 인덱스 0, 1, 2, 3, 4, 5, 6 반복
+ 	function txtClick2(obj) {
+ 		obj.style.backgroundColor = colors[idx++%7];
+ 	}
+
+</script>
+<h2 onclick = "txtClick1(this)"> 1번 클릭하세요 </h2>
+<h3 onclick = "txtClick2(this)" > 2번 클릭하세요 </h3>
+</body>
+</html>

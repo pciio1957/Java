@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+1. cardinality라는 테이블간의 관계를 의미한다. 관계의 종류를 기술하고,
+    여기에서 optional, mandatory라는 의미와 실제 erd에서 어떤 경우에 
+    사용되는지 기술하세요.
+    
+    관계의 종류
+    - 1:1 : 하나의 테이블과 관계되는 것
+    - 1:다 : 하나의 테이블과 여러 개의 테이블이 관계되는 것
+    - 다:다 : 여러 개의 테이블과 여러 개의 테이블이 관계되는 것
+    - 자기참조 : 자기 테이블의 엔티티를 참조하는 것
+    
+    모든 인스턴스가 관계에 참여하면 전체 참여(Mandatory)
+    관계에 일부만 참여하는 경우 부분참여(Optional)
+    
+    cardinality : 1:1, 1:다, 다:다, 재귀적 관계
+    optional : 연결관계 데이터가 있을 수도 없을 수도 있는 관계 (관계차수 : ZERO_OR_MORE)
+    mandatory : 반드시 연결관계 데이터가 반드시 있어야하는 관계 (관계차수 : EXACTLY_ONE)
+    
+2. 자기 참조형 테이블 구조로 Starcraft의 유닉생성을 아래의 형식으로 만들고,
+    ERD와 데이터를 입력하세요.
+    번호 유닉명  상위번호  공격력
+    1   라바1    0      0
+    2   드론1    1      1
+    3   라바2    0       
+    게임을 모르는 분들은 가족관계로 아래와 같은 구조로 만드세요
+    번호 역할     부모번호  이름
+    1   할아버지    0     홍고조
+    2   아버지      1     홍판서
+
+=================================
+
+1. js에서 객체 속성 및 할당 형식, 3가지를 예제로 기술하세요.
+	(아래)
+
+2. js의 객체와 배열을 활용한 for in 구문 형식을 기술하세요.
+
+	1) 일반 객체를 통해 처리하기
+	for(var num(객체의속성) in numList(객체)) {
+		num : 객체의 속성
+		numList : 객체
+		numList[num] : 객체나 배열의 해당 순서의 데이터 (속성값)
+	}
+	
+	2) 배열을 통해 처리하기
+	var arry = [1000, 3000, 5000];
+	for(var idx in arry) {
+		console.log(idx + " : " + arry[idx]);
+	}
+
+3. 화면에 선언된 select로 된 부서코드와 부서명을
+    key/value 형식의  json 객체로 데이터로 할당해보세요.
+    부서: [select]
+    var select = {부서코드:001, 부서명:"인사팀", 부서코드:002, 부서명:"관리팀"};
+    
+4. 아래와 같은 테이블에 데이터를 json 형식의 데이터로 할당 처리해 보세요.
+    1단계:
+        no  이름 국어 영어 수학
+        1   ##  @@  ##  ##
+    2단계:
+        no  이름 국어 영어 수학
+        1   ##  @@  ##  ##
+        2   ##  @@  ##  ##
+        3   ##  @@  ##  ##
+~9:30까지 일단 제출부탁드리며, 시간 드리겠습니다.~
+*/
+
+</style>
+</head>
+<body>
+	부서정보: <select id="dept" onclick="call(this)"> </select><br>
+	선택한 부서 코드 값: <span></span><br>
+
+	<table id="tab01"></table>
+	<table id="tab02"></table>
+
+</body>
+<script type="text/javascript">
+
+// 1. 객체 할당 형식
+var stu = {name:"김길동", grade:3, kor:81};
+stu.isAclass = stu.kor > 90;
+stu['math'] = 92;
+
+// 3. select 부서 할당
+//var select = {'부서코드':001, '부서명':"인사팀", '부서코드':002, '부서명':"관리팀"};
+
+var dept = {"10":"인사", "20":"재무", "30":"회계"};
+var deptSelect = document.querySelector("#dept");
+var show = "";
+
+for(var pro in dept) {
+	show += `<option value='${pro}'>${dept[pro]}</option>`;
+}
+
+deptSelect.innerHTML = show;
+
+// 선택한 값이 sapn 태그에 출력됨
+function call(obj){
+	document.querySelector("span").innerText = obj.value;
+}
+
+
+// 4. 
+/*
+var students = {'번호':1, '이름':"홍길동", '국어':80, '영어':"74", '수학':"79"};
+var students2 = 
+	{stu1: {'번호':1, '이름':'홍길동', '국어':80, '영어':74, '수학':79},
+	stu2: {'번호':2, '이름':"유길동", '국어':90, '영어':95, '수학':92}};
+
+*/
+var tab01Obj = document.querySelector("#tab01");
+var tab02Obj = document.querySelector("#tab02");
+var show = "<tr>";
+
+/*
+console.log("객체선언시 : " + students2);
+console.log("객체 안의 객체 선언시1 : " + students2.stu1);
+console.log("객체 안의 객체 선언시2 : " + students2.stu2);
+console.log("객체 안의 객체의 프로퍼티 선언 : " + students2.stu2.번호);
+
+for(var st in students2) {
+	show += "<td>";
+	console.log("st에는 무엇이 : " + st);
+	// console.log("st 사용하기 : " );
+	
+	for(var s in students2[st]) {
+		console.log("s 이용하기 : " + s );
+		console.log("객체[s] 사용하기 : " + students2[st].s );
+	}
+}
+*/
+
+// 풀이
+
+//1) 객체형 선언
+var student = {'번호':1, '이름':"홍길동", '국어':80, '영어':74, '수학':79};
+
+// 2) 배열안에 객체형 다중 선언
+var students = 
+	[{'번호':1, '이름':'이길동', '국어':23, '영어':43, '수학':45},
+	{'번호':2, '이름':"유길동", '국어':90, '영어':95, '수학':92}	];
+	
+// 3) 배열에 객체형 추가 선언
+students[2] = {'번호':3, '이름':"호길동", '국어':80, '영어':60, '수학':75};
+
+var show2 = "";
+show2 += `<tr><th>no</th><th>이름</th><th>국어</th><th>영어</th><th>수학</th></tr>`;
+show2 += `<tr><th>1</th>`;
+
+// 4) 객체의 데이터 for문 (1단계)
+for(var prop in student){
+	console.log(prop + " : " + student[prop]);
+	show2 += `<td>${student[prop]}</td>`;
+}
+show2 += "</tr><br>";
+tab01Obj.innerHTML = show2;
+
+
+// 5) 배열의 데이터 for문 (2단계)
+// students[0] : 배열안에 있는 첫번째 객체 {'번호':1, '이름':'홍길동', '국어':80, '영어':74, '수학':79}
+// students[1] : 배열안에 있는 두번째 객체 {'번호':2, '이름':"유길동", '국어':90, '영어':95, '수학':92}	
+// students[0].이름 : 배열 안의 첫번째 객체 안에 있는 속성 '이름'에 접근
+
+var show3 = "<tr><th>no</th><th>이름</th><th>국어</th><th>영어</th><th>수학</th></tr>";
+for(var idx in students) {
+	// 사용방법1 - 속성을 선언해줘서 객체 속성에 접근
+	//console.log(idx + ", " + student[idx].이름 + ", " + student[idx].국어 + ", "
+	//		+ student[idx].영어 + ", " + student[idx].수학 + ", ");
+	
+	// 사용방법2 - 반복문안에 반복으로 객체 단위의 속성에 접근한다 
+	var std = students[idx];
+	show3 += "<tr><td>" + (Number(idx)+1) + "</td>";
+	for(var pro in std) {
+		console.log(std[pro]);
+		show3 += "<td>" + std[pro] + "</td>";
+	}
+	show3 += "</tr>";
+	console.log(rshow);
+}
+tab02.innerHTML = show3;
+
+</script>
+</html>

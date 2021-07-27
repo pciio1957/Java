@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table width = "200" border></table>
+<div whith = " 100" border> </div>
+<script>
+
+
+ // 반복문
+ // 1. 위에 body안에 있는 태그를 객체로 지정하는 부분 - table을 객체로
+ var tab = document.querySelector("table");
+ 
+ var show = "";
+ for(var cnt = 1; cnt <= 10; cnt++) {
+	 // table안에 들어갈 tr : table row
+	 // table안에 들어갈 td : table data (컬럼)
+	 show+= "<tr><td>" + cnt + "</td><tr>";
+ }
+ // .innerHTML : 태그로 추가처리 
+ tab.innerHTML = show;
+ 
+ 
+ 
+ // 응용) 위 div를 지정하고, h1 카운트번호 
+ // 	show += "<h1>" + cnt + "</h1>"; 출력 (2조)
+ var di = document.querySelector("div");
+ 
+ var content = "";
+ for(var idx = 1; idx < 11; idx++) {
+	 content += "<h1>" + idx + "</h1>";
+ }
+ di.innerHTML = content;
+ 
+
+
+</script>
+</body>
+</html>

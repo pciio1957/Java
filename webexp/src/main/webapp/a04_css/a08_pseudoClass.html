@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+/*
+ 
+#가상선택자
+1. 반응 선택자
+	1) 사용자의 반응으로 생성되는 특정한 상태를 선택하는 것
+	2) 사용자가 특정 태그위에 마우스 커서를 올리면 hover 상태
+	3) 특정 태그를 마우스 클릭하면 active 상태
+	4) 기본코드
+		:active - 사용자가 마우스를 클릭한 태그 선택
+		:hover - 사용자가 마우스 커서를 올린 태그 선택 
+		
+2. 상태 선택자
+	0) 주로 입력하는 form 하위의 요소객체에 활용된다
+		상태의 변경에 따른 css 처리 변경 
+		input, select, textarea 
+		
+	1) 상태의 변경에 따른 css 처리변경
+	2) 기본 코드
+		:checked - 해당 선택자가 checked가 되었을 때
+			처리할 내용에 대한 부분을 의미
+			주로 type="radio|checkbox"를 사용할 때 활용된다.
+		:focus - 해당 선택자에 focus를 위치시켰을 때 처리된다.
+			form 하위의 입력 요소객체를 사용할 때 쓰인다
+		:enabled - 해당 선택자의 요소객체가 활성화되었을 때 
+			처리할 css 속성 설정시 활용된다.
+		:disabled - 해당 선택자의 요소객체가 비활성화되었을 때
+			처리할 css 속성 설정시 활용된다. 
+			
+#구조 선택자
+	:nth-child(n) : 같은 부모를 둔 하위순서 
+	:even : 해당 객체의 짝수번째 선택
+	:odd : 해당 객체의 홀수번째 선택 
+	
+	ex) td:nth-child(1)
+	tr
+		td *
+		td
+		td
+	tr
+		td *
+		td
+		td
+
+#기타
+	선택자1, 선택자1 .. {속성:속성값;} : 여러 선택자를 동일한 속성과 속성값으로 설정
+	선택자1+선택자2 {속성:속성값;} : 형제관계에 있는 요소객체 중에 선택자1를 앞에 둔
+			선택자2(하나만)에 대한 속성설정 처리 
+	선택자1~선택자2{속성:속성값;} : 형제관계에 있는 요소객체 중에 선택자1를 앞에 둔
+			선택자2에 대한 속성설정 처리 
+			
+			
+#js에서의 선택자와 속성처리
+1. js에서 DOM객체는 초기 선언으로 선택자와 속성을 선언할 수 있다.
+2. DOM 객체는 event에 의해 동적으로 다른 DOM의 속성을 변경함으로 
+	동적인 처리를 할 수 있다.
+3. 선택자는 단일이냐 다중이냐에 따라 아래와 같이 객체를 선택할 수 있고
+	css와 동일한 선택자 형식을 이용하여 특정한 요소객체를 지정할 수 있다. 
+	var obj = document.querySelector("css선택자"); // 단일객체
+	var array = document.querySelectorAll("css선택자"); // 다중객체
+	
+	obj.속성 = "속성값"; // 태그의 기본속성을 변경할 때 활용된다
+	obj.style.속성 = "속성값"; // 태그의 inline css 속성 변경할 때 활용된다
+	
+*/
+
+	h2:active{background-color:orange;}
+	h3:hover{color:blue;}
+	
+	tr:hover{color:red;}
+	td:active{
+		background-color:yellowgreen;
+		color:navy;
+		font-size:30px;
+	}
+	
+	/* input요소 객체의 type 속성이 checkbox일 때 check가 되어있는 경우
+		+ : 바로 옆 객체를 의미
+		+span : 바로 옆 객체가 span일때 해당 요소객체의 속성을 설정함
+		
+		input[type=checkbox]:checked+span{background-color:pink;}
+	 */
+	 
+	input[type=checkbox]:checked+span{
+		background-color:yellowgreen;
+		color:green;
+	}
+	
+	input[type=radio]:checked+span{
+		background-color:purple;
+		color:white;
+	}
+	
+	/*
+	풀이) 
+	
+	요소1, 요소2{속성:속성값;}
+	두 개의 속성을 연결해서 속성을 줌 
+	div input[type=checkbox]:checked+span, 
+	div input[type=radio]:checked+span {
+		background-color:yellowgreen;
+		color:green;
+	}
+	*/
+
+</style>
+</head>
+<body>
+
+	<h2> 안녕하세요 반갑습니다 (active) </h2>
+	<h3> 오늘도 좋은날입니다 (hover) </h3>
+	
+	
+	<!-- 
+	응용) table로 물건정보 리스트를 한 후 tr부분은 hover로 처리하고
+	td부분은 active로 배경색상과 글자색상/글자 크기를 변경하여
+	출력되도록 하기 (1조) 
+	
+	물건리스트를 보다가 크게 확인하고 싶다할때 누르면 색변경 크기변경 되는것
+	 -->
+	
+	<table border>
+	<tr><th>물건정보 리스트</th></tr>
+	<tr><th>상품명</th><th>가격</th></tr>
+	<tr><td>연필</td><td>1000</td></tr>
+	<tr><td>마우스</td><td>12000</td></tr>
+	</table>
+	
+	<!-- 체크박스가 선택될 때 배경색 지정하는 실습 -->
+	<input type="checkbox"/> <span> 선택1 </span>
+	<input type="checkbox"/> <span> 선택2 </span>
+	<input type="checkbox"/> <span> 선택3 </span><br><br>
+	
+	
+	<!--  
+	응용) type을 checkbox | radio를 설정하고 좋아하는 취미와 성별을
+		선택했을 때 해당 내용을 글자색상과 배경색상을 변경하고, js를 통해서 
+		선택된 내용을 하단 div에 출력처리 (2조)
+		hint) document.qeurySelector("선택자") 활용
+	-->
+	
+	<hr>
+	
+	<div name="choice">
+		<li>취미선택</li>
+		<ul><input type="checkbox" value="운동하기"/><span> 운동하기 </span></ul>
+		<ul><input type="checkbox" value="영화보기"/><span> 영화보기 </span></ul>
+		<ul><input type="checkbox" value="노래듣기"/><span> 노래듣기 </span></ul>
+		
+		<li>성별선택</li>
+		<ul><input type="radio" name="gender" value="남자"/><span> 남자 </span></ul>
+		<ul><input type="radio" name="gender" value="여자"/><span> 여자 </span></ul>
+	</div>
+	
+	<div id="list"> </div>
+	
+	<!--  
+	
+	*요런식으로 풀이하심
+	<div> 
+		<h3> 취미선택 </h3>
+		<input type="checkbox" value="운동하기"/><span> 운동하기 </span>
+		<input type="checkbox" value="영화보기"/><span> 영화보기 </span>
+		<input type="checkbox" value="노래듣기"/><span> 노래듣기 </span>
+		
+		<h3>성별선택</h3>
+		<input type="radio" name="gender"/><span> 남자 </span>
+		<input type="radio" name="gender"/><span> 여자 </span>
+		
+		<div id="show">
+		
+		</div>
+	</div>
+	
+	
+	 -->
+	
+<script type="text/javascript">
+
+var chbox = document.querySelectorAll("input[type=checkbox]");
+var ulObjs = document.querySelectorAll("div li ul");
+var divObj1 = document.querySelector("[name=list]");
+var divObj2 = document.querySelector("[name=choice]");
+
+
+chbox.onclick = function() {
+	var show = divObj1.innerText;
+	
+	show += chbox.value + " ";
+	
+	divObjs1.innerText = show;
+	
+}
+
+
+/*
+#응용문제 풀이 어려움 ㅠ
+순서 1. 대상 객체를 가져옴 - checkbox, radio 객체를 다중으로 선택 후 Dom 선언
+		-> css 선언과 동일 
+		js에서 사용되는 querySelector, querySelectorAll은
+		css의 선택자와 동일한 처리를 할 수 있다.
+		
+순서 2. 이벤트 처리 1) 이벤트 처리시 선택된 객체 지정
+			    2) 해당 객체의 label 내용 가져오기
+			    3) 출력 객체에 label 내용 처리
+			   			   
+*/
+
+// 1. 두 객체를 같이 선택할 수 있음, ("선택자1, 선택자2");
+// 응용2) 선택자를 이용해 객체 가져오기 (2조)
+var inputObjs = document.querySelectorAll("div input[type=radio], div input[type=checkbox]");
+// 확인용
+console.log("이벤트 대상객체의 개수 : " + inputObjs.length);
+
+// 3. 내용을 출력할 dom객체 선언
+var divObj = document.querySelector("#list");
+
+
+// 2. all로 가져와서 배열로 이벤트 처리해야함. 
+// 응용3) SelectorAll(선택자)를 이용해서 클릭이벤트 처리하기 (3,2조)
+// 1단계 처리 - 체크된 경우 누적되지만 다시 체크해제하면 삭제되지 않음 
+for(var idx=0; idx<inputObjs.length;idx++) {
+	var show = "";
+	inputObjs[idx].onclick = function() {
+		console.log(idx + " 클릭했습니다 " + this.value);
+		console.log(idx + " 클릭했습니다 " + this.checked); // 확인용
+		
+		// 4. show 변수 누적
+		// 응용4) show 변수를 이용해 누적처리 후 div에 출력하기 (5조)
+		
+		if(this.checked){ // 체크된 경우만
+			show += this.value + ", ";
+		}
+		
+		// 5. 출력할 대상 객체에 show 객체 할당
+		divObj.innerText = show;
+	}
+}
+
+
+//2단계 처리 -
+for(var idx=0; idx<inputObjs.length;idx++) {
+	var show = "";
+	inputObjs[idx].onclick = function() {
+		console.log(idx + " 클릭했습니다 " + this.value);
+		console.log(idx + " 클릭했습니다 " + this.checked); // 확인용
+		
+
+		// 1) 이벤트 처리시 선택된 객체 지정
+		// 2) 해당 객체의 label 내용 가져오기 
+		// 응용5) check된 요소객체의 옆에 있는 span 객체를 dom으로 가져오기 (4, 5조)
+		// hint! for문을 반복하면서 show에 중복할당하기 
+		var taget = document.querySelectorAll("div input[type=checkbox]:checked+span, "
+				+"div input[type=radio]:checked+span");
+		
+		// 3) 출력객체에 label 내용 처리 
+		//		for문을 반복하면서 show에 중복할당하기
+		for(var jdx=0; jdx<target.length; jdx++) {
+			
+			show += target[jdx].innerText + " , ";
+		}
+		
+		divObj.innerText = show;
+	}
+}
+
+
+</script>
+</body>
+</html>

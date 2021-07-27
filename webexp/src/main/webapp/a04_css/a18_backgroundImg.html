@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+/*
+#배경 다루기
+1. 배경 색이나 이미지지정
+	1) background-color, background-image
+		배경 색 지정, 배경이미지 지정
+	2) 둘 다 지정되면 배경 이미지가 출력되지 않는 영역에 배경색 출력
+
+2. 배경 이미지 위치 : background-position
+	ex) background-position:center center;
+	
+3. 배경 이미지 반복 출력 : background-repeat
+	전체 div나 해당 요소 객체 기준으로
+	1) 이미지가 더 크면 이미지의 일부분만 보이고
+	2) 이미지가 작으면 x축, y축으로 반복되어 표현된다 
+	3) no-repeat 속성은 반복되지 않게 처리되고
+	4) repeat-y: 아래 위로 반복되어 처리
+	5) repeat-x : 오른쪽 왼쪽(좌우)으로 반복되어 처리된다. 
+	ex) background-repeat:repeat-y;
+*/
+
+div{ 
+	background-color:skyblue;
+	background-size:100px 100px;
+	background-image:url("media/spongebob.png");
+	background-repeat:repeat-y;
+	background-position:center center;
+}
+
+div{
+	width:200px;
+	height:200px;
+	color:blueviolet;
+	font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<h3> div 박스에 배경 꾸미기 </h3>
+<div> 텍스트 </div>
+<button name="repeatX" onclick="repeatX()">x축 이미지반복</button>
+<button name="repeatY" onclick="repeatY()">y축 이미지반복</button>
+<button name="imgBig" onclick="imgBig()">배경이미지 커져라</button>
+<button name="imgSmall" onclick="imgSmall()">배경이미지 작아져라</button>
+
+</body>
+<script type="text/javascript">
+
+// 위 기능 버튼에 맞게 배경미지 처리하기 (4,5조)
+
+var divObj = document.querySelector("div");
+
+function repeatX() {
+	divObj.style.backgroundRepeat = "repeat-x";
+}
+
+function repeatY() {
+	divObj.style.backgroundRepeat = "repeat-y";
+}
+
+var xsize = 100; var ysize = 100;
+function imgBig() {
+	xsize+=10;
+	ysize+=10;
+	divObj.style.backgroundSize = xsize + "px " + ysize + "px"; 
+}
+
+function imgSmall() {
+	xsize-=10;
+	ysize-=10;
+	divObj.style.backgroundSize = xsize + "px " + ysize + "px"; 
+}
+
+
+</script>
+</html>

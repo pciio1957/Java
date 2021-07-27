@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+#정리문제
+1. 테이블의 기본 속성과 tr, td의 의미를 기술하세요.
+	테이블 : 데이터를 2차원으로 나타낼때 사용된다
+	tr : <tr> 테이블의 행 </tr>
+	td : <td> 테이블의 데이터로 각 행안의 데이터를 나타냄 </td>
+	
+	
+	<table 속성="속성값">
+	1) 속성
+		align : 화면에서 테이블의 위치를 지정
+		border : 셀라인의 굵기로 일반 라인은 css 적용이 필요함
+		width : 높이
+		height : 높이
+		js의 DOM객체에서 객체명.속성 = 속성값 형식으로 동적으로 변경가능하다.
+		
+	2) 
+		tr : table row 행단위 테이블 구성
+		td : table data 열단위 테이블 구성
+		th : table head 테이블의 타이틀을 구성
+		
+		table과 tr사이의 구성요소로 생략가능함
+		thead 
+		tbody
+		tfoot
+	
+2. 2X2테이블을 만들고, 각 td를 클릭시, 연결되어 있는 과일명 4가지 중에 하나를
+    출력처리하세요.
+    (아래에 풀었습니다)
+    
+    1) 테이블 하위에 있는 td 선택자 : 테이블 안의 td가 다수이므로 All함수 사용
+    	document.querySelectorAll("#tab01 td");
+	2) 배열로 지정된 td들을 반복문을 통해 <td>의 데이터의 값 변경
+    
+3. innerHTML과 innerText의 차이를 기본예제를 통하여 기술하세요.
+	innerHTML : 할당되는 태그를 적용되어 출력된다
+	innerText : 할당되는 태그를 화면에 그대로 출력한다
+	
+	innerHTML : html태그를 랜더링(태그가 있으면 지정된 화면처리방식으로 변환처리)
+	innerText : html태그가 포함되어 있으면 그대로 문자열로 표현처리
+
+4. setInterval 함수의 사용 방법을 기술하세요.
+	시간을 지정하여 사용하는 반복함수로 1/1000 로 나타내고 지정한 시간이 지나면 비활성화된다.
+
+	setInterval(처리할 함수, 반복할 시간간격(1/1000))
+		ex) setInterval(function() { alert("1초지났습니다.")}, 1000);
+		// 1초마다 alert창이 띄워진다. 
+		
+5. 숫자형 문자열을 숫자로 변경하는 js 함수를 기술하세요.
+	parseInt() 함수를 사용하여 숫자로 변경한다. 
+	
+6. 1X1테이블에서 [컬럼추가][행추가] 클릭시, 처리되게 하세요 [응용]
+    - table 선택 및 innerHTML을 활용하여 html로 tr td로 테이블 구성을 만드세요
+    
+    
+*/
+
+</script>
+</head>
+<body>
+<table id="tab01" width="200" height="200" border>
+<tr><td>1</td><td>2</td></tr>
+<tr><td>3</td><td>4</td></tr>
+</table>
+
+<br><br>
+<input id="btncol" type="button" value="컬럼추가"/>
+<input id="btnrow" type="button" value="행추가"/>
+<table id="tab02" width="300" height="300" border>
+<tr><td>1</td></tr>
+</table>
+</body>
+<script type="text/javascript">
+
+var tb01 = document.querySelector("#tab01");
+var tb01Tds = document.querySelectorAll("#tab01 td");
+var color = ["사과", "오렌지", "바나나","키위"];
+var ranIdx = parseInt(Math.random()*4);
+
+for(var idx=0; idx<tb01Tds.length;idx++){
+	tb01Tds[idx].onclick = function() {
+		tb01Tds[idx].innerHTML = color[ranIdx];
+	}
+}
+
+// 풀이
+for(var idx=0; idx<tb01Tds.length;idx++){
+	tb01Tds[idx].id = idx;
+	tb01Tds[idx].onclick = function() {
+		this.innerText = color[this.id];
+	}
+}
+
+
+// 응용) 1X3 테이블을 만들고 해당 셀을 클릭시 가위/바위/보가 출력되게 처리하기(3조)
+	var games = ["가위", "바위", "보"];
+	var tds02 = document.querySelector("#tab02 td");
+	
+	for(var idx=0; idx<tds02.length;idx++) {
+		tds02[idx].onclick = function() {
+			// 익명함수는 현재 내용과 mapping해서 처리되는 것이 아니고
+			// 만약 클릭하면이라는 내용으로 처리되는 것이기 때문에
+			// 함수 내부에 선언된 데이터는 따로 메모리 관리가 되어
+			// 반복문에서 수행되는 최종데이터가 처리된다. 
+			console.log("인덱스 : " + idx);
+			this.innerText = games[this.id];
+		}
+	}
+
+
+var tb01 = document.querySelector("#tab02");
+var btncol = document.querySelector("#btncol");
+var btnrow = document.querySelector("#btnrow");
+var colCnt = 1; // 열갯수
+var rowCnt = 1; // 행갯수
+var cnt = 1; // 번호
+
+
+
+/*
+// 열단위 처리 (컬럼으로 오른쪽으로 늘어남)
+btncol.onclick = function() {
+	// colCnt의 갯수에따라서 <td>1</td>가 증가처리되면 td가 변경되어보인다
+	// 1. 반복되지 않는 부분 : <tr></tr>
+	// 2. 반복되는 부분 : <td></td>는 colCnt에 따라 증가
+	colCnt++;
+	var show = "<tr>";
+	for(var cnt=1; cnt<colCnt; cnt++) {
+		show += "<td>" + cnt + "</td>";
+	}
+	show += "</tr>";
+	tb01.innerHTML = show;
+}
+
+// 행단위 처리 (로우으로 아래로 늘어남)
+btnrow.onclick = function() {
+	
+	var show = "";
+	for(var cnt=1;cnt<rowCnt;cnt++) {
+		show += "<tr><td>" + cnt + "</td></tr>";
+	}
+	tb01.innerHTML = show;
+	rowCnt++;
+}
+*/
+
+btncol.onclick = function() {
+	colCnt++;
+	createTab(rowCnt, colCnt);
+}
+
+btnrow.onclick = function() {
+	rowCnt++;
+	createTab(rowCnt, colCnt);
+}
+
+// 위의 행/열 단위로 테이블을 구성하는 걸 공통함수로 선언해서 사용 
+// 이중포문 사용 row안에 column 구성..?
+function createTab(row, col) {
+	
+	var show = "";
+	var cnt = 1;
+	
+	// 행단위 데이터 처리
+	for(var rcnt = 1; rcnt<=row; rcnt++) {
+		show += "<tr>";
+		
+		// 열단위 데이터 처리
+		for(var ccnt=1;ccnt<=col;ccnt++) {
+			show += "<td>" + (cnt++) + "</td>";
+		}
+		show += "</tr>";
+	}
+	tb01.innerHTML = show;
+
+}
+
+</script>
+</html>

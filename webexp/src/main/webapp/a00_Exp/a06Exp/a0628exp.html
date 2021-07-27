@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+
+#0628 정리문제
+1. input type의 속성값으로 checkbox|radio의 차이점을 예제를 통해서 기술하기
+2. 다음 화면을 통해 결과 처리하기
+	[임의의 수]*[임의의수] = [입력할 수]
+	[정답 여부]
+	
+	-초기화면-
+	[2] * [7] = [ ] -> 데이터가 입력하고 정답여부를 클릭시???
+			
+3. 회의 등록 여부를 확인하는 프로그램을 작성하기
+	회원아이디 [ ] [등록여부확인]
+	클릭시 goodMan, himan, higirl(배열로 처리)일때는 등록된 아이디
+	그 외는 등록 가능 
+	
+*/
+
+	function ckshow1() {
+		// checkbox는 여러개를 선택할 수 있는 다중 객체이므로 속성을 hobby로 처리
+		var hobby = document.querySelectorAll("[name=hobby]");
+		console.log("선택된 값 확인");
+		console.log(hobby);
+		
+		// hobby.length : 배열 객체의 갯수 
+		for(var idx=0; idx<hobby.length;idx++) {
+			// hobby[idx].value : 해당 배열 안에 value 할당 내용
+			// hobby[idx].checked : 해당 배열 안에 checked 여부
+			console.log(idx + " : " + + hobby[idx].checked +  " : " + hobby[idx].value);
+		}
+	}
+	
+	
+	function rdshow1() {
+		// radio는 하나만 선택되기 때문에 배열로 처리안해도 됨.. 
+		var loc = document.querySelectorAll("[name=loc]");
+		console.log(" # radio : " + loc.value);
+		
+		
+		for(var idx=0; idx<loc.length;idx++) {
+			// hobby[idx].value : 해당 배열 안에 value 할당 내용
+			// hobby[idx].checked : 해당 배열 안에 checked 여부
+			console.log(idx + " : " + + loc[idx].checked +  " : " + loc[idx].value);
+		}
+	}
+
+</script>
+</head>
+<body>
+
+
+<form>
+<!-- 1. checkbox: 다중선택, radio : 단일선택 -->
+<h2 onclick="ckshow1()"> 취미선택 </h2>
+ <input type="checkbox" name="hobby" value="영화">영화보기<br>
+ <input type="checkbox" name="hobby" value="노래">노래듣기<br><br>
+ 
+ 
+ <h2 onclick="rdshow1()"> 지역선택 </h2>
+ <input type="radio" name="loc" value="서울">서울<br>
+ <input type="radio" name="loc" value="강원">강원<br>
+ <input type="radio" name="loc" value="경북">경북<br>
+ <input type="radio" name="loc" value="경기">경기<br><br>
+
+
+<!--  submit으로 전송 시
+	checkbox의 경우 동일한 이름을 여러가지 데이터가 전송되지만
+	radio의 경우 checked된 단일값만 전송된다  
+	a0628exp.html?hobby=영화&hobby=노래&loc=서울&ok=제출 -->
+<input type="submit" name="ok" value="제출"/>
+</form>
+
+<!-- 2. 구구단게임
+	style은 css 속성이라서 "속성:속성값;" 형태로 지정  -->
+<h2>구구단 게임</h2>
+<input type="text" name="num01" size="1" style="text-align:center;"/>
+X
+<!-- 응용) 두번째 input에 임의의 숫자 1~9로 할당 처리 (1조) -->
+<input type="text" name="num02" size="1" style="text-align:center;"/>
+<input type="text" name="result" size="1" style="text-align:center;"/>
+<input type="button" onclick="Bresult" id="resultCfm" value="결과확인"/>
+
+
+<!-- 3. 회의 등록 여부 확인 -->
+<form action="a0628exp2.jsp">
+회원아이디 : <input type="text" name="id" /><input type="submit" name="addCheck" value="등록여부확인"/>
+</form>
+
+
+</body>
+<script type="text/javascript">
+
+var num01Obj = document.querySelector("[name=num01]");
+// 2~9까지 랜덤처리, parseInt() : 문자열을 정수형으로 변환, 실수형을 정수로 변환(Math.floor()효과)
+num01Obj.value = parseInt(Math.random() * 8 + 2);
+
+
+// 응용1) 두번째 input에 임의의 숫자 1~9로 할당 처리 (1조)
+var num02Obj = document.querySelector("[name=num02]");
+num02Obj.value = parseInt(Math.random() * 9 + 1); 
+
+// 응용2) 결과확인 버튼 클릭시 정답여부 alert으로 출력 (2조)
+var resultObj = document.querySelector("[name=result]");
+// var resultValue = resultObj.value; 이렇게 하니까 값이 제대로 안들어감
+
+var btnResult = document.querySelector("#resultCfm");
+btnResult.onclick = function Bresult() {
+	console.log("num1 : " + num01Obj.value + " num2 : " + num02Obj.value);
+	console.log("입력 : " + resultObj.value);
+	
+	// num01Obj, 02에 형변환을 해줘야 제대로 값이 계산된다. 
+	// js에는 + 이외의 연산자는 자동형변환이 된다. 
+	// 아 if문에서 .value를 안해서 계산이 안됨 ..ㅎ
+	// js에서 숫자가 동일할 때 true 출력
+	// js에서 데이터유형과 데이터값을 둘다 비교해서 확인할 때 비교연산자 ===을 사용한다.
+	corNum = num01Obj.value * num02Obj.value; 
+	if(resultObj.value == corNum) {
+		alert("정답입니다");
+	} else {
+		alert("오답입니다");
+	}
+}
+
+
+// 3. 
+
+var ckIdBtn = document.querySelector("[name=addCheck]");
+var idObj = document.querySelector("[name=id]");
+
+ckIdBtn.onclick = function() {
+	var regMembers = ["goodman", "himan", "higirl"];
+	var ck = 0;
+	
+	for(var idx=0; idx<regMembers.length;idx++) {
+		if(regMembers[idx] == idObj.value) {
+			ck++;
+		} 
+	}
+	
+	if(ck!=0) {
+		alert("명단에 있습니다 ");
+	} else {
+		alert("명단에 없습니다 ");
+	}
+}
+
+</script>
+</html>

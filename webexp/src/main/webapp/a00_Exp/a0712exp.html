@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+# 지난 주 정리문제
+1. css Box 구성요소와 모델 주요 속성을 예제와 함께 기술하세요
+	박스의 구성요소
+	1) 컨텐츠 
+		html 태그의 텍스트나 이미지가 출력되는 부분
+	2) 패딩(padding)
+		컨텐츠를 직접 둘러싸고 있는 내부 여백
+	3) 테두리(border)
+		패딩 외부의 테두리로서 직선이나 점선 혹은 이미지로 테두리를 그릴 수 있음
+	4) 여백(margin)
+		박스의 맨 바깥 영역이며 테두리 바깥의 공간으로 인접한 아래 위 아웃 태그와 박스의 거리 
+	5) 기타 
+		width, height, background-color
+	
+	모델의 주요 속성
+	위의 박스의 구성요소-(아래접미어) 조합으로 선언해서 사용함 
+	1) top, bottom, right, left : 상하좌우 다 해당됨
+
+	2) border 관련 접미어 (width, style, color) : 굵기, 선형태, 색상
+
+	2. css의 단위 속성과 font_XXX 속성을 예제와 함께 기술하세요.
+	CSS의 단위속성
+	1) 상대적 크기단위
+		%(퍼센트), em(상대적크기)
+	2) 절대적 크기 단위
+		픽셀(px), 인치(in), cm, mm, pt
+		
+	font 속성
+	1) font-family
+		serlf 형 : 끝부분에 각진 표시가 있는 서체
+		Sans-serif형 : serif 없는 서체
+		monospace형 : 글자폭이 동일한 서체
+		궁서체, 고딕, 굴림, 맑은 고딕, arial, Times New Roman
+		ex) font-family:arial, "Times New Roman", Serif;
+
+	2) font-size 
+		: 폰트의 크기 속성 
+		ex) font-size:40px;
+	
+	3) font-style 
+		: 주로 폰트의 기울임체 설정
+		ex) font-style:italic; : 기울임 설정
+	
+	4) font-weight 
+		: 폰트의 굵기
+		light, bold, px단위로 설정가능
+		ex) font-weight : 300; 
+			font-weight : bold;
+*/
+</script>
+<style>
+
+#box1 {
+	width:200px;
+	height:200px;
+	background-color:green;
+	border:3px solid;
+	padding-top:20px;
+	margin:20px;
+}
+
+#box2 {
+	font-family:arial, "Times New Roman", Serif;
+	font-style:italic;
+	font-size:40px;
+	font-weight : 300; 
+}
+</style>
+</head>
+<body>
+
+<div id="box1">div1입니다</div>
+<div id="box2">div2입니다</div>
+</body>
+<script type="text/javascript">
+
+/*
+
+*/
+
+</script>
+</html>

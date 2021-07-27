@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+
+#css의 단위
+크기 단위
+	% : 기본크기에 대해 백분율로 표기할 때 사용
+		기본크기 = 100% / 1.5배 = 150%
+	em : 해당 기본 크기에서 상대적 크기로 나타낼 때 사용
+		1.5em : 1.5배 크기 설정
+		2.0em : 2배 크기 설정
+	px : 픽셀 단위로 절대적 크기를 설정해준다.
+	
+	---- 기본적으로 사용되는 크기 
+	
+	cm, mm : 센치미터, 밀리미터를 나타냄
+	in : 인치를 나타냄 
+		1in = 2.54cm = 96px
+	pt : 포인트를 나타냄
+		1pt = 1in의 1/72
+		
+#font 제어 속성 
+1. 폰트 패밀리
+	serlf 형 : 끝부분에 각진 표시가 있는 서체
+	Sans-serif형 : serif 없는 서체
+	monospace형 : 글자폭이 동일한 서체
+	궁서체, 맑은 고딕, arial, Times New Roman
+	ex) font-family:arial, "Times New Roman", Serif;
+
+2. font-size 
+	: 폰트의 크기 속성 
+	ex) font-size:40px;
+	
+3. font-style 
+	: 주로 폰트의 기울임체 설정
+	ex) font-style:italic; : 기울임 설정
+	
+4. font-weight 
+	: 폰트의 굵기
+	ex) font-weight : 300; 
+		font-weight : bold;
+	
+5. font로 위에 나열된 속성을 한번에 지정가능하다
+	선택자{
+		font:font-style font-weight 
+			font-size font-family
+	}
+	
+	ex) h2{italic bold 20px 궁서체;}
+	
+	
+*/
+
+</script>
+</head>
+<style type="text/css">
+
+
+body {
+	font-family: "Times New Roman", serif;
+	font-size: large;
+}
+
+h3 {
+	font: italic bold 40px consolas, sans-serif;
+}
+
+#h3obj{
+	font: "굴림체", serif;
+	font-weight:500px;
+	font-size:30px;
+}
+
+</style>
+<body>
+
+<h3>Consolas font</h3>
+<hr>
+<p style="font-weight:900"> font-weight 900 </p>
+<p style="font-weight:100"> font-weight 100 </p>
+<p style="font-style:italic"> italic style </p>
+<p style="font-style:oblique"> oblique style </p>
+<p> 현재 크기의
+	<span style="font-size:1.5em">1.5배</span>
+	크기로
+</p>
+
+<h3 id="h3obj"> 안녕하세요 </h3>
+<select onchange="chFamily(this)">
+	<option>글자체변경</option>
+	<option>굴림체</option>
+	<option>궁서체</option>
+	<option>맑은고딕</option>
+</select>
+
+<select onchange="chSize(this)">
+	<option>10px</option>
+	<option>20px</option>
+	<option>30px</option>
+</select>
+
+<select onchange="chStyle(this)">
+	<option>normal</option>
+	<option>italic</option>
+	<option>oblique</option>
+</select>
+
+
+</body>
+<script type="text/javascript">
+
+/*
+
+응용) [1단계] 안녕하세요 -> h3으로 글자 굵기, 글자체, 글자 크기를 css 설정 
+	 [2단계] 선택시 해당 내용을 바뀌게 처리하기 
+		select 글자체변경 
+		select 글자크기변경
+		select 글자스타일변경
+
+*/
+
+var h3Obj = document.querySelector("#h3obj");
+
+function chFamily(obj) {
+	
+	h3Obj.style.fontFamily = obj.value;
+}
+
+function chSize(obj) {
+	
+	h3Obj.style.fontSize = obj.value;
+}
+
+// 마지막거는 속성을 어떻게 써야할지 모르겠음 ㅎ
+function chStyle(obj) {
+	
+	h3Obj.style.fontStyle = obj.value;
+}
+
+</script>
+</html>

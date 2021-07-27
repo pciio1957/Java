@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#js에서 반복문
+1. while(조건), do-while(조건), for(초기값;반복조건;증감값) 
+	- 사용방식은 java와 동일
+
+2. 배열과 객체관계에서 반복문 처리 
+	1) 객체의 데이터 선언과 for문의 활용
+		for(var pro in 객체명) {
+			pro : 객체의 속성
+			객체명[pro] : 객체의 속성
+		}
+
+*/
+
+#tab01 {
+	border:1px solid;
+}
+
+</style>
+</head>
+<body>
+	<h2> 회원정보 </h2>
+	<table id="tab01" border></table><br>
+	
+	<h2> 물건정보 </h2>
+	<table id="tab02" border></table><br>
+	
+	<div id="showRainbow">
+	
+	</div>
+	
+</body>
+<script type="text/javascript">
+
+
+var p01 = {name:"홍길동", age:25, loc:"서울 신림동"};
+
+// js는 추가속성을 아래의 두가지 형식으로 처리가능
+// 1) 객체명.속성명 = 속성값;
+p01.isMale = true;
+// 2) 객체명['속성명'] = 속성값;
+p01['isStudent'] = true;
+
+
+var tabObj01 = document.querySelector("#tab01");
+var show = "<tr><th>속성</th><th>속성값</th></tr>";
+for(var pro in p01) {
+	console.log(pro + " : " + p01[pro]);
+	show += "<tr><td>" + pro + "</td><td>" + p01[pro] + "</td></tr>";
+}
+
+tabObj01.innerHTML = show;
+
+
+// 응용1) 물건의 속성을 json 형식으로 초기 선언하고 추가 속성을 
+//		위와 같이 두가지 형태로 속성을 지정할당하고
+//		for문을 통해서 console.log에 출력하기 (2조)
+var product = {pname:"복숭아", price:10000, cnt:10};
+product.isCnt = product.cnt > 5;
+product['color'] = "pink";
+
+var tabObj02 = document.querySelector("#tab02");
+var show2 = "<tr><th>항목</th><th>내용</th></tr>";
+for(var pd in product) {
+	console.log(pd + " : " + product[pd]);
+	show2 += "<tr><td>" + pd + "</td><td>" + product[pd] + "</td></tr>";
+}
+tabObj02.innerHTML = show2;
+
+
+// 응용2) <div id="showRainbow">
+//		객체로 h3로 7가지 무지개의 배경색과 글자색 지정해서 출력하기 (2조)
+
+// hint) h3 style = "background-color:@@@; color:@@@" 
+// 순서 1. 객체생성
+//		2. 반복문에 의해서 출력처리
+
+var rainbow1 = ["red", "orange", "yellow", "green", "blue", "navy", "purple"];
+var rainbow2 = ["purple", "navy",  "blue", "green",  "yellow", "orange", "red"];
+// var rainbow = {"red":"purple", "orange":"navy", "yellow":"blue", "green":"yellow",
+//				"blue":"green", "navy":"orange", "purple":"red"};
+var divObj = document.querySelector("#showRainbow");
+var show3 = "";
+for(var rb in rainbow1){
+	show3 += "<h3 style='background-color:" + rainbow1[rb] + "; color:" + rainbow2[rb] + "'>" + rb;
+	// show3 += "<h3 style='background-color:" + rb + "; color:" + rainbow[rb] +"'>" ;
+}
+divObj.innerHTML = show3;
+
+</script>
+</html>

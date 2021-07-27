@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  # 전날 정리문제
+1. css의 border-radius의 속성값에 대하여 여러가지 형식을 예제를 통해 기술하기
+	테두리 옵션
+	1) border-radius : 전방향 옵션;
+	2) border-radius : 왼쪽상단 오른쪽상단 오른쪽하단 왼쪽하단옵션;
+		시계방향으로 처리
+
+2. css 배경이미지 크기, 이미지명, 반복, 위치 속성을 js로 구현해보기
+	배경속성 지정하기
+	1) background-image : 배경이미지 지정
+	2) background-color : 배경색 지정
+	3) background-position : 배경이미지 위치 지정
+	4) background-repeat : 배경이미지 반복 출력(x, y축 기준)
+
+3. text-showdow의 속성을 순서를 기술하기
+	text-shadow : 속성의 순서
+	1) h-shadow : 수평 거리 조절
+	2) v-shadow : 수직 거리 조절
+	3) blur-radius : 흐릿한 그림자로 만드는 효과의 거리 조절
+	4) color | none : 그림자의 색상이나 효과를 내지않을 때 작성
+
+4. inline-block은 어떠한 특성 가졌는지, inline속성과 block속성과 비교하여 
+    기본 예제를 통하여 기술하기
+    inline-block
+    해당 요소 객체를 새 라인으로 할것인지, 기존 라인으로 지정할 것인지 설정
+    1) inline : 줄바꿈없이 표현
+    2) block : 줄바꿈으로 요소객체들을 표현
+    3) inline-block : 상위객체와 대상요소객체간의 표현은 liline으로 
+    		내부적 요소객체는 block으로 처리 
+    
+5. :hover와 position 속성을 활용하여, Hello라는 글자의 짝수번째는 글자가 위로, 
+    홀수번째는 아래로 출력되게 처리하기
+    
+~09:30까지 진행하고, 상황을 봐서 시간을 더 드리겠습니다.
+*/
+div{background:yellowgreen;
+	width:300px;
+	height:100px;}
+#div01 {border-radius:50px;border-style:dotted;}
+#div02 {border-radius:0px 20px 20px 20px;}
+#div03 {border-radius:0px 20px 40px 60px;}
+#div04 {border-radius:0px 40px 40px 40px;}
+#div05 {background:skyblue;
+		width:400px;
+		height:400px;}
+
+.inline { width:auto;
+		height:auto;
+		background:yellow;}
+		
+.five {
+	width:auto;
+	height:auto;
+	background:pink;
+}
+		
+[name=first]:hover {
+	background:black;
+	color:white;
+	position:relative;
+	width:30px;
+	top:30px;
+}
+[name=last]:hover {
+	background:red;
+	color:white;
+	position:relative;
+	height:30px;
+	bottom:30px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="div01"> div01 입니다</div>
+<div id="div02"> div02 입니다</div>
+<div id="div03"> div03 입니다</div>
+<div id="div04"> div04 입니다</div><br><br>
+
+<div id="div05" onclick="ckS()"> 배경이미지 적용 </div>
+
+
+<p>inline-block 예제</p>
+1번<div style="display:none" class="inline">noen</div><br><br>
+2번<div style="display:inline" class="inline">inline</div><br><br>
+3번<div style="display:block" class="inline">block</div><br><br>
+4번<div style="display:inline-block" class="inline">inline-block</div><br><br>
+
+<p>5번</p>
+<div name="first" class="five"> h </div><br>
+<div  class="five"> e </div><br>
+<div  class="five"> l</div><br>
+<div name="last"  class="five">l </div><br>
+<div class="five">o </div><br>
+
+</body>
+<script type="text/javascript">
+
+var div05Obj = document.querySelector("#div05");
+
+function ckS() {
+	div05Obj.style.backgroundImage = "url('spongebob.png')";
+	div05Obj.style.backgroundSize = "100px 200px";
+	div05Obj.style.backgroundRepeat = "repeat-x";
+	div05Obj.style.backgroundPosition = "center";
+}
+
+</script>
+</html>

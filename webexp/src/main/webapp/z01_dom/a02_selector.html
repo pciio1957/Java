@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+
+<!-- 
+응용) 기본 선택자 태그, 아이디, 클래스로 속성을 선언하고
+	하단에 해당 객체를 dom 객체를 호출하여 속성을 변경처리 (2조)  
+-->
+
+<h2> h2입니다 </h2>
+<h3 id="h3obj"> h3입니다 </h3>
+<h4 class="h4class" > h4입니다 </h4>
+<input type="text" name="num01"/>
+
+</body>
+<script type="text/javascript">
+
+var h2Obj = document.querySelector("h2");
+var h3Obj = document.querySelector("#h3obj");
+var h4Obj = document.querySelector(".h4class");
+var numObj = document.querySelector("input[name=num01]");
+
+h2Obj.style.color = "red"; 
+h3Obj.style.background = "yellowgreen"; 
+h4Obj.align = "center"; 
+
+numObj.value="25"; // input type=text의 기본값 지정
+
+</script>
+</html>

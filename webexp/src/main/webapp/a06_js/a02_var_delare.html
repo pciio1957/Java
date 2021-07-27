@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+
+#표현식 
+alert("안녕하세요"); : alert(), "안녕하세요" = 표현식
+var name = "홍길동"; : var, name, "홍길동" = 표현식
+
+#키워드 : 프로그램 내장 명령어를 말하는 것으로 식별자로 사용할 수 없다.
+	- var, break, if, for ... 
+	ex) var break = "안녕"; (X)
+
+#식별자
+	1) 키워드 사용금지
+		ex) var if = 25; (X)
+	2) 숫자로 시작하면 안됨
+		ex) var 10num; (X)
+	3) 특수문자는 $, _만 허용
+		ex) var #name; (X)
+		변수명으로 연산자 내용도 사용하지 못한다
+		ex) var num-good; (X)
+	4) 중간에 공백문자는 허용하지 않는다
+		ex) var num good; (x)
+		
+
+#출력
+	1) alert, confirm/prompt(입/출력)
+
+	2) document.write("버그 찾을 때 출력");
+		
+	3) console.log() : f12로 bug를 찾을 때 활용된다 
+	4) DOM객체 - innerText, innerHTML
+	
+#js의 '' (홋따옴표), "" (쌍따옴표)의 활용
+1. js에서는 '', "" 구분없이 문자열 데이터를 사용할 때 활용
+2. 두 개의 형태의 문자열을 변수나 함수의 매개변수로 구분할 때 주로 활용된다
+3. 홋따옴표, 쌍따옴포를 같이 활용할 떄는 \(역슬래쉬)를 활용해서 나타낸다
+	1) 포함관계로 구분하여 사용할 수 있지만
+	2) 겹쳐서 사용하면 에러가 발생한다 
+
+
+#데이터의 입력 처리 : 함수의 리턴값으로 결과값을 처리할 수 있다
+1. confirm("출력문자열") : 확인시 true/취소시 false값 리턴
+2. prompt("출력문자열", "입력초기값") : 확인시 입력된 값 리턴/
+	취소시 문자열 'null' 리턴
+
+#삼항연산자
+1. 형식
+	조건(boolean값)?true일때 데이터:false일때 데이터
+	ex) pname != 'null'? pname:'입력안됨'
+
+
+*/
+
+
+</style>
+</head>
+<body>
+<button id="btn01" value="입력"> </button>
+
+</body>
+<script type="text/javascript">
+
+//응용) ecma6에서 활용하는 `(아포스트로피)와 ${변수명}을 활용해서 
+//		화면에 1~10까지 누적된 변수를 h3으로 출력하기 (5조)
+var sum = 0;
+
+for(var idx=1; idx < 11; idx++) {
+	console.log(`${sum} + ${idx} = ${sum+=idx}`);
+	document.write(`<h3>${sum} + ${idx} = ${sum+=idx}</h3>`);
+}
+
+
+// 따옴표의 구분
+document.write("<h2 align='center'>안녕</h2>");
+document.write("<h2 onclick='call()'> 클릭하세요</h2>");
+
+function call(str) {
+	alert('이벤트 호출' + str);
+}
+
+console.log('this is "String"');
+console.log("this is 'String'");
+// console.log("this is 'String"); 포함관계가 아닌 겹쳐서 사용할 시 에러발생
+
+
+// 특수문자 표시
+console.log("this is \"String\"");
+console.log('this is \'String\'');
+
+
+// 응용) document.write()를 이용해 "", ''을 같이 활용하는 예제 만들어보기 (6조)
+document.write("<a href='#'> 링크 처리 </a><br>");
+document.writer("<h2 onclick=\"alert('안녕')\"></h2>");
+
+
+// 데이터의 입력처리
+var isReg = confirm("등록하시겠습니까?");
+if(isReg) {
+	document.wirte("<h3>등록되었습니다!</h3>");
+} else {
+	document.write("<h3>등록/취소되었습니다</h3>");
+}
+
+var name = prompt("이름을 입력하세요", "이름입력");
+if(name != 'null') {
+	document.write(`<h3>이름 : ${name}</h3>`);
+} else {
+	document.wirte(`<h3>이름을 등록하지 못했습니다</h3>`)
+}
+
+
+// 응용1) 물건명/가격/갯수를 입력하고
+//		화면에 출력하시겠습니까? -> 웹 화면에 출력
+//		취소시 -> console.log에 출력 (1조)
+
+var btn01 = document.querySelector("#btn01");
+
+btn01.onclick = function() {
+	var pname = prompt("물건명을 입력하세요", "물건명 입력");
+	var price = prompt("가격을 입력하세요", "가격 입력");
+	var pcnt = prompt("갯수를 입력하세요", "갯수 입력");
+	
+	//var isOutput = confirm("화면에 출력하시겠습니까?");
+	if(confirm("화면에 출력하시겠습니까?")) {
+		document.write("[" + pname + "\t" + price + "\t" + pcnt + "]");
+		document.write(`<h4>물건명:${pname!=null?pname:'입력안됨'}</h4>`);
+		document.write(`<h4>가격:${price!=null?price:'입력안됨'}</h4>`);
+		document.write(`<h4>개수:${pcnt!=null?pcnt:'입력안됨'}</h4>`);
+		document.write("등록되었습니다");
+	} else {
+		console.log("<h3>취소되었습니다</h3>");
+	}
+	
+}
+
+</script>
+</html>

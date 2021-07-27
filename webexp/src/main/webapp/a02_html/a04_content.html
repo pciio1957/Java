@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+
+*/
+
+</script>
+</head>
+<body>
+
+<!--  
+
+p : paragraph 문단을 나누는 처리를 한다.
+단락별로 문자를 사용할 때 활용한다.
+hr : horizontal line 수평선을 그어준다. (구분선)
+br : 줄바꿈 처리한다
+
+ -->
+ 
+ 
+ <h2> 문단1 </h2>
+ <hr>
+ <p>
+ HTML 문서도 본문을 여러 단락으로
+ 나눌 수 있다. CSS 스타일을 사용하면
+ 단락 단위로 내어쓰기와 들여 쓰기가 가능하다 </p>
+ 
+ <h2> 문단2 </h2>
+ <hr>
+ <p>여러 개의 빈칸은 하나로 취급되며,
+ 엔터 키 역시 하나의 빈 칸으로 처리된다. </p>
+ 
+ 
+ <!--  
+ 
+ 응용) 위 h2, p, hr, br을 활용하여 java란? html이란? jsp란?
+ 	위키백과사전에 검색하여 화면에 출력하기 (3조)
+ 	
+  -->
+  
+  
+  <h2 id = "javaTitle">JAVA란</h2>
+  <hr>
+  <p id = "javaContent"> 객체지향프로그래밍 언어로서 C/C++에 비해 간략하고 쉬우며 네트워크 기능의 구현이 용이하기 때문에, 
+  인터넷 환경에서 가장 활발히 사용되는 프로그래밍 언어이다. <br>
+  자바 프로그램은 운영체제의 종류에 관계없이 대부분의 시스템에서 실행 가능하다.
+  [네이버 지식백과] 자바 [Java] (두산백과) </p>
+  
+  <h2 id = "htmlTitle">HTML이란</h2>
+   <hr>
+  <p id = "htmlContent"> 인터넷 서비스의 하나인 월드 와이드 웹을 통해 볼 수 있는 문서를 만들 때 사용하는 웹 언어의 한 종류이다. <br>
+  특히 하이퍼텍스트를 작성하기 위해 개발되었으며, 
+  인터넷에서 웹을 통해 접근되는 대부분의 웹 페이지들은 HTML로 작성된다.
+  [네이버 지식백과] HTML [Hypertext Markup Language] (두산백과)</p>
+  
+  <h2 id = "jspTitle">JSP란</h2>
+  <hr>
+  <p id = "jspContent"> JSP는 서블릿의 사용을 통해 웹페이지의 내용이나 모양을 제어하는 기술이다. 
+  자바의 개발자인 썬마이크로시스템즈에서는 JSP 기술이 서블릿 API라고 말하고 있다. 
+  JSP는 마이크로소프트의 ASP 기술에 필적한다. 
+  JSP가 웹서버에 의해 실행될 자바프로그램을 호출하는데 반하여, 
+  ASP는 페이지가 사용자에게 보내지기 전에 스크립트 
+  인터프리터(VBScript 또는 JScript와 같은)에 의해 해석될 스크립트를 포함시킨다.
+  [네이버 지식백과] JSP [Java Server Pages] - 자바 서버 페이지 (지형 공간정보체계 용어사전, 2016. 1. 3., 이강원, 손호웅) </p>
+  
+  
+</body>
+<script type="text/javascript">
+
+/*
+
+*/
+
+	// 태그의 속성인 id는 #아이디명으로 DOM 객체에 접근할 수 있다.
+	var jtObj = document.querySelector("#javaTitle");
+	jtObj.onclick = function() {
+		// 배경색 변경
+		this.style.backgroundColor = "yellow";
+		
+		// 해당 타이틀 클릭시 content 객체를 받아오고 안의 내용을 변경함
+		var jConObj = document.querySelector("#javaContent");
+		jConObj.innerHTML += "<br><h4>자바 내용 확인하셨나요!</h4><br>";
+		// += 사용시 : 문자열을 추가하고 줄바꿈처리 
+		// = 사용시 : 문자열을 해당 내용으로 변경처리
+		
+	}
+	
+	
+	// 응용) html이란?을 클릭하면 배경색상 변경 및 내용을 추가 출력
+	//		즐거운 오후입니다 
+	var htObj = document.querySelector("#htmlTitle");
+	htObj.onclick = function() {
+		this.style.backgroundColor = "gray";
+		
+		var htConObj = document.querySelector("#htmlContent");
+		htConObj.innerHTML += "<br><h4> 즐거운 오후입니다 </h4><br>";
+	}
+
+</script>
+</html>

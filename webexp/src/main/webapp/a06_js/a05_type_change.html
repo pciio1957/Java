@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#js에서 형변환 처리
+1. 문자열과 숫자형 데이터를 자동 형변환을 할 수 있도록 많이 지원하고 있다
+	+ 이외에는 대부분 사칙연산자, 비교연산자, 논리연산자 사용시 자동 형변환됨	
+	ex) 문자열에서 숫자형으로 자동형변환 : if('25'>='30') 
+
+2. 형변환 처리 지원 함수와 객체
+	1) Number("25"), Number("25.7") -> 정수형, 실수형 둘 다 지원한다
+	2) parseInt("25.7") -> 정수형으로 변환하여 숫자를 리턴(25)
+	3) parseFloat("25.5") -> 실수형 데이터 숫자 리턴(25.5)
+	
+	*Number()는 숫자외에 문자가 있으면 에러가 발생하지만
+	parseInt(), parseFloat()는 숫자로 시작하면 앞에 숫자를 추출하고
+	형변환해준다.
+
+	*숫자형이 아닌 데이터를 형변환시 NaN에러 발생
+	4) isNaN("문자열") : 숫자형이 아닌 문자열은 true로 처리된다 
+		위 함수를 사용하여 효과적인 처리를 해야한다
+	5) eval("25 + 30 * 25") : 문자열로 된 코드를 실행시켜주는 역할을
+		하기때문에 문자열로 된 연산식을 처리해준다 
+
+*/
+
+</style>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+var num01str = "25";
+var num02str = "5";
+var num03str = "3000원";
+var num04str = "75.5kg";
+document.write(`<h2>함수 활용X : ${num01str+num02str}</h2>`);
+document.write(`<h2>Number 객체사용 1: ${Number(num01str) + Number(num02str)}</h2>`);
+document.write(`<h2>Number 객체사용 2: ${Number(num03str) + Number(num04str)}</h2>`);
+document.write(`<h2>paseInt 사용 1: ${parseInt(num01str) + parseInt(num02str)}</h2>`);
+document.write(`<h2>paseInt 사용 2: ${parseInt(num03str) + parseInt(num04str)}</h2>`);
+document.write(`<h2>paseFloat 사용 1: ${parseFloat(num01str) + parseFloat(num02str)}</h2>`);
+document.write(`<h2>paseFloat 사용 2: ${parseFloat(num03str) + parseFloat(num04str)}</h2>`);
+
+
+// 응용1) 물건명1 가격, 물건2 가격을 prompt로 입력받아 위 함수를 이용해 출력하기
+// 응용2) 사람1의 키, 사람2의 키를 prompt로 입력받아 위 함수를 이용해 합산결과 출력하기 (1조)
+
+var pname1 = prompt("물건명을 입력하세요");
+var price1 = prompt("가격을 입력하세요");
+
+var pname2 = prompt("물건명을 입력하세요");
+var price2 = prompt("가격을 입력하세요 ");
+
+// 이렇게 입력가능
+// var pname2 = Number(prompt("물건명을 입력하세요"));
+
+
+
+if(pname1 != 'null' && pname2 != 'null') {
+	var sum1 = Number(price1) + Number(price2);
+	var sum2 = parseInt(price1) + parseInt(price2);
+	
+	document.write(`${price1} + ${price2} = ${sum1}<br>`);
+	document.write(`${price1} + ${price2} = ${sum2}<br><br>`);
+}
+
+var person1 = prompt("사람1의 키를 입력하세요", "0cm");
+var person2= prompt("사람2의 키를 입력하세요", "0cm");
+
+if(person1 != 'null' && person2 != 'null') {
+	var tot1 = Number(person1) + Number(person2);
+	var tot2 = parseFloat(person1) + parseFloat(person2);
+	
+	document.write(`${person1} + ${person2} = ${tot1}cm<br>`);
+	document.write(`${person1} + ${person2} = ${tot2}cm<br><br>`);
+}
+
+</script>
+</html>

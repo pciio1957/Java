@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	ID : <input type = "text" id = "id01" value = "입력할내용"/> <br>
+	<input type = "button" onclick = "ckValid()" value =  "유효성 check"/>
+</body>
+<script type ="text/javascript">
+
+	// 위에 버튼을 클릭하면 text에 적은 ID를 가져와 유효성 체크함
+	function ckValid() {
+		alert("유효성 체크합니다");
+		// 위의 input text의 ID를 가져온다
+		// 위에 선언된 input창에 입력되어있는 id값을 가져오기 
+		// DOM의 속성이 ID일 때 #아이디명으로 선태해서 가져올 수 있다.
+		//var idObj = document.querySelector("#id01");
+		// 해당 idObj의 속성 value를 통해서 입력한 값을 가져올 수 있다. 
+		//alert("입력된 ID : " + idObj.value);
+		//var inputData = /himan/;  // 정규표현식 check를 위해서 처리
+		//alert(inputData);
+		//var compareDate = 'himan goodman higirl'; // 문자열 지정
+		
+		// 해당 문자열이 포함되는지 여부를 .text()메소드를 통해 
+		// true/false 표시 
+		//alert(inputData.test(compareData));
+		
+		// ctrl+s 저장을 확실히 해야함 -> 실행 후 F5도 잘 눌러보기
+		// 여기서 문자열을 그냥 입력해놔서 브라우저에서 입력이 연관있지는 않음 
+		var regExp = /4/;
+		var str = 'JavaScript jQuery Ajax';
+		var output = regExp.test(str);
+		alert(output);
+		
+		/*
+		#replace() :
+			정규표현식 기호에 의해서 변경처리해주는 부분이다 
+			
+			1. 정규표현식 기호
+				$& : 일치하는 문자열을 찾아서 해당 문자로 변경 처리 (1개만)
+
+			2. /정규표현식/ 옵션
+				1) g : 전역 비교를 수행 (global, 모두 찾음)  -- (이부분이 잘 실행이 안되나봄..)
+				2) i : 대소문자 가리지 않고 비교(ignore case)
+				... 이외 생략!
+		*/
+		
+		// a라는 문자열을 찾아서 +a+로 변경처리
+		var regExp = /a/gi;
+		var str2 = 'JavaScript jQuery Ajax';
+		alert(str2.replace(regExp, '+$&+'));
+		
+		
+		
+	}
+
+</script>
+</html>

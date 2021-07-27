@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#행단위 배열 처리 
+
+응용1) 배열데이터 홍길동, 김길동, 신길동을 선언하고
+	아래와 같이 형식을 출력하기 (3조)
+	no  이름
+	1 	홍길동
+	2	김길동
+	3 	신길동
+	
+응용2) 배열데이터 홍길동, 김길동, 신길동을 선언하고
+	아래와 같이 형식을 출력하기 (4조)
+	no  이름   	아이디      권한
+	1 	홍길동    himan     관리자
+	2	김길동    goodman   일반사용자
+	3 	신길동    badman    관리자
+*/
+
+</style>
+</head>
+<body>
+
+	<table id="tab01" border></table>
+	<table id="tab02" border></table>
+</body>
+<script type="text/javascript">
+
+// 1. 배열로 처리
+var arry01 = ['홍길동', '김길동', '신길동'];
+var tabObj01 = document.querySelector("#tab01");
+var show = "<tr><th>번호</th><th>이름</th></tr>";
+
+for(var a in arry01) {
+	show += "<tr><td>" + Number(a)+1 + "</td><td>" + arry01[a] + "</td></tr>";
+	// show += `<tr><td>${Number(a+1)}</td><td>${arry01[a]}</td></tr>`;
+}
+
+tabObj01.innerHTML = show;
+
+
+// 2. 배열 안의 객체로 처리 
+var arry02 = [{name:'홍길동', id:'himan', grant:'관리자'}, 
+	{name:'김길동', id:'goodman', grant:'일반사용자' }, 
+	{name: '신길동', id:'badman', grant:'관리자'}];
+var tabObj02 = document.querySelector("#tab02");
+	
+var show2 = "<tr><th>번호</th><th>이름</th><th>아이디</th><th>권한</th></tr>"
+
+for(var a in arry02) {
+	show2 += "<tr><td>" + (Number(a)+1) + "</td>";
+	// show2 += `<tr><td>${Number(a)+1}</td>`;
+	
+	var emparry = arry02[a];
+	for(var b in emparry) {
+		show2 += "<td>" + emparry[b] + "</td>";
+		// show2 += `<td>${emparry[b]}</td>`;
+	}
+	
+	show2 += "</tr>";
+}
+
+tabObj02.innerHTML = show2;
+</script>
+</html>

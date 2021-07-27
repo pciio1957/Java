@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#초기값이 있는 가변함수
+1. 함수명(매개1, 매개2=매개2가 없을 때 초기, 매개3=매개3이 없을때 초기값)
+
+#...배열명으로 가변적 매개변수 처리 
+function 함수명(기본매개1, ...가변변수배열) 
+cf) 가변변수배열에서 ..으로 사용하면 arguments와 비슷한 효과
+
+*/
+
+</style>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+function product(name, price=0, cnt=0) {
+	console.log("물건명 : " + name + ", 가격 : " + price + ", 갯수 : " + cnt);
+}
+
+product("사과");
+product("바나나", 4000);
+product("딸기", 13000, 3);
+
+
+// 응용) 회원명, 아이디, 패스워드, 권한 
+//		1개의 매개값부터 4개의 매개값이 가변적으로 처리될 때
+//		아이디의 default : "아이디없음"
+//		패스워드의 default : "패스워드없음"
+//		권한의 default : "방문자"
+//		함수를 선언하고 console로 출력하기 (2조)
+
+var idx = 1;
+function login(name, id="아이디없음", pw="패스워드없음", grant="방문자") {
+	console.log(idx++ + "번째 로그인");
+	console.log("회원명 : " + name);
+	console.log("아이디 : " + id);
+	console.log("패스워드 : " + pw);
+	console.log("권한 : " + grant);
+}
+
+login("홍길동");
+login("고길동", "himan");
+login("이길동", "hello", "7777");
+login("김길동", "goodman", "1234", "관리자");
+
+
+// 배열명으로 가변적 매개변수 처리하기 (ecma6~)
+function buyProd(name, ...buyPros){
+	
+	console.log(" 구매물건");
+	console.log(" 물건명 : " + name);
+	buyPros.forEach(function(prod, idx){
+		console.log(idx+1 + "번째 인자의 값 : " +prod);
+	});
+}
+
+buyProd("사과");
+buyProd("바나나", 3000, 2);
+buyProd("딸기", 2000);
+
+// 응용) 컴퓨터부품을 컴퓨터회사 기준으로 cpu, ram, hdd로 설정하여 
+//		구매한 물건의 정보 출력하기 (4조)
+
+function bycom(company, ...buyList) {
+	console.log(" 구매물품 ");
+	console.log("회사명 : " + company);
+	
+	var titles = ["cpu", "ram", "hdd"];
+	
+	buyList.forEach(function(prod, idx){
+		console.log(titles[idx] + " : " + prod);
+	});
+}
+
+byCom("삼성");
+byCom("LG", "i7 4.3GHz");
+byCom("현대", "i5 3.3GHz", "16GB");
+byCom("조립식", "i7 4.3GHz", "32GB", "500GB");
+
+</script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+2. DOM객체의 다중 설정과 단일 설정 처리를 데이블 tr, td 기준으로 처리하여 출력하기
+
+3. css의 후손 선택자 선언방식 2가지 기술하기
+	조상선택자 후손선택자{속성:속성값} : 조상과 후손의 중간에 요소객체 상관없이 처리된다. 
+	부모선택자>자식선택자{속성:속성값} : 계층상 바로 윗단계를 둔 자식객체에 대한 속성이 처리된다.
+	
+  
+4. 선택자 중 h4 중에서 class=cls01로 설정하고자 한다. 해당 내용을 처리하기
+	h4.clas01{속성:속성값;}
+5. 가상 선택자 3가지 유형을 기술하기 
+	1) 반응 선택자 : 
+
+*/
+
+</script>
+<style type="text/css">
+
+.trObj{
+	background:green;
+}
+
+#tdObj{
+	background:orange;
+}
+
+</style>
+</head>
+<body>
+
+<table>
+	<tr class="trObj"><td>1번째줄 데이터</td></tr>
+	<tr><td id="tdObj">2번째줄 데이터</td></tr>
+	<tr><td>3번째줄 데이터</td></tr>
+	<tr class="trObj"><td>4번째줄 데이터</td></tr>
+	<tr class="trObj"><td>5번째줄 데이터</td></tr>
+	<tr><td>6번째줄 데이터</td></tr>
+
+</table>
+
+</body>
+
+<script>
+
+var tdObj = document.querySelector("td");
+tdObj.style.fontSize = "30px";
+
+var tdArr = document.querySelector("td");
+for(var idx = 0; idx < tdArr.length; idx++) {
+	tdArr[idx].align = "center";
+	tdArr[idx].style.backgroundColor = "yellow";
+}
+
+</script>
+</html>

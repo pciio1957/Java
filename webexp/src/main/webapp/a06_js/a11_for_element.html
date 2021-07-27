@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#for(단위변수 of 배열)
+	단위 객체나 변수
+
+*/
+
+</style>
+</head>
+<body>
+	<div id="show"></div>
+</body>
+<script type="text/javascript">
+
+	var arry = [1000, 2000, 3000];
+	for(var price of arry) {
+		console.log(`단위 데이터: ${price}`);
+	}
+	
+	// 응용) 물건명과 가격을 배열로 선언하고 for(of) 형식으로 
+	//		h2로 출력하기 (5조)
+	//		1 @@@ @@
+	//		2 @@@ @@
+	var divObj = document.querySelector("#show");
+	var product = [{pname:'키보드', price:30000},
+			{pname:'컴퓨터', price:100000}];
+	var divContent = "";
+	var cnt = 1; 
+	for(var idx of product) {
+		divContent += `<h2>${cnt++}  ${idx.pname}   ${idx.price}</h2>`;
+	}
+	
+	divObj.innerHTML = divContent;
+	// document.querySelector("#show").innerHTML = divContent;
+
+</script>
+</html>

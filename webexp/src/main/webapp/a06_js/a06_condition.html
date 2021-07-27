@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#js의 프로세스 처리
+1. if(조건1 결과값:boolean) {
+	조건 1이 true일때 처리할 내용
+} else if(조건2 결과값:boolean) {
+	조건1이 아니고 조건2일때 처리할 내용 
+} else {
+	위 조건 1, 2가 아닌 경우 처리할 내용 
+}
+
+2. switch(데이터1) {
+	case 데이터1의 특정한 데이터경우:
+		처리할 프로세스 break;
+	case 데이터1의 특정한 데이터경우:
+		처리할 프로세스 break;
+	default : 위에 case에 해당하지 않는 경우 실행;
+}
+
+3. 반복문
+	while(반복조건 boolean값){}
+	do{}while(반복조건) : 일단 한번은 실행하고 반복처리할 내용
+	for(초기값; 반복조건; 증감연산) {}
+	
+	*js에서는 지원하지않지만 자바에서 사용하는 반복문
+	for(단위데이터:배열) : js에서는 지원X 
+	for(단위속성 in 객체/배열) { : js에서 지원
+		단위속성
+		객체[속성]
+		배열[index]
+	}
+	
+	ex) var p01 = {name:"홍길동", price:3000, cnt:5};
+	for(var pro in p01) {
+		pro : name, price, cnt
+		p01[pro] : "홍길동", 3000, 5
+	}
+	
+	var arry = {3000, 4000, 5000};
+	for(var idx in arry) {
+		idx : '0', '1', '2'
+		arry[idx] : 3000, 4000, 5000
+	}
+	 
+*/
+
+</style>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+var score = Number(prompt("학점을 입력하세요", '0.0'));
+
+// 조건문
+/*
+if(4.0 <= score && score <= 4.5) {
+	alert("A등급입니다");
+} else {
+	alert("A등급이 아닙니다");
+}
+*/
+
+// 응용) 위에서 숫자형을 입력하지 않는 경우/취소를 클릭한 경우에 대한 
+//		예외처리를 하고 출력처리하기 (2조)
+
+/*
+ // 내가 푼것
+if(score == 0) {
+	alert("학점을 입력해주세요");
+} else if(score == 'NaN') {
+	alert("숫자만 입력해주세요 ");	
+} else if(score < 0 || score > 4.5) {
+	alert("점수는 0.0~4.5 범위로 작성해주세요");
+} else if(4.0 <= score && score <= 4.5) {
+	alert("A등급입니다");
+} else {
+	alert("A등급이 아닙니다");
+}
+*/
+
+// 풀이
+if(4.0 <= score && score <= 4.5) {
+	alert("A등급입니다");
+} else {
+	
+	// 0미만이거나 4.5초과 판별
+	if(score < 0 || score > 4.5) {
+		alert("점수는 0.0~4.5 범위로 작성해주세요");
+	} else if(isNaN(score)) {
+		alert("숫자형만 입력해주세요");
+	} else {
+		alert("범위에서 벗어났습니다(숫자)");
+	}
+}
+
+console.log(score);
+console.log(typeof(score));
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+0720 정리문제
+1. isNaN(), isFinity()는 어떤 유형에 데이터를 처리할 때, 사용되는가?
+	- 무한대의 데이터를 처리할 때 사용된다. 
+	
+	isNaN() : NaN 에러에 대한 체크로 boolean값으로 리턴된다
+			(NaN 에러: 숫자형 데이터를 입력하지 않고 형변환하려고 할때 나타남)
+	isFinity() : InFinity 에러에 대한 체크로 boolean값으로 리턴된다
+			(Finity 에러: /0으로 처리할 때 나타나는 에러) 
+	
+2. 매개변수가 가변형인 것 중에, default값 처리형식을 기본예제를 통해서 기술하세요.
+	(아래)
+	
+3. 가변매개변수의 형태를 정리해보세요.
+	1) 초기값이 있는 가변매개변수 : 값이 없을 수도 있는 변수의 초기값을 미리 지정함
+		function plus(num01, num02=0, num03=0) { ; }
+		
+	2) 배열명을 ...으로 지정해 매개변수를 가변적으로 사용
+		function calcu(select, ...numList) {
+			console.log("연산 종류 : " + select);
+			var sum = 0; 
+			
+			numList.forEach(function(nums, idx){
+				console.log((idx+1) + "번째 값 : " + nums[idx]);
+				sum += nums[idx];
+			});
+		}
+	3) argumnts : 가변 매개변수를 배열로 처리 
+
+4. 객체의 속성의 대한 확인과 with 구문을 통한 객체 속성 처리를 기본 예제를 통해서 기술하세요.
+	(아래)
+	
+5. 초기 객체를 선언하고(var obj={}), 5가지 데이터유형을 할당한 후, 호출해보세요..
+	(아래)
+	
+	var p01 = {};
+	1) 문자열
+	p01.name = "홍길동";
+	
+	2) 숫자형
+	p01['age'] = 25;
+	
+	3) boolean
+	p01['isAdult'] = true;
+	
+	4) 함수형
+	p01.show = function() {
+		console.log(this.name);
+		console.log(this.age);
+		console.log(this.isAdult);
+	}
+	
+	5) 객체형(배열포함)
+	p01.myfreind = {name:'김친구', age:28, loc:'홍대'};
+	
+6. 아래와 같은 등록 form으로 객체형 배열에 데이터를 등록하고,  forEach함수를 이용하여,
+    등록된 내용을 리스트 되게 처리하세요.
+    물건명[   ] 가격[   ] 갯수[   ]  [등록]
+    구매물건리스트
+    번호  물건명  가격  갯수  계
+    
+    진행순서
+    1. 화면구현 body
+    2. 이벤트 구현 : 등록버튼에 onclick 이벤트 적용 
+    3. DOM객체 사용 : 물건명, 가격, 갯수 입력받아옴
+    4. 이벤트를 통해 출력처리 
+    	1) 객체만들기
+    		var plist = [];
+    	2) 이벤트를 통해서 입력된 데이터 배열에 추가하기
+    		plist[idx] = {name:pname};
+    	3) 화면에 출력 처리
+    		var show = "";
+    		plist.forEach(function(prod, idx){
+    			show += `<tr><td>${prod.name}</td>..`;
+    			tab.innerHTML = show;
+    		});
+    
+7. eval() 함수를 이용하여, 계산기 5X4의 계산기를 폼을 만들었을 때, text에 출력되게
+    하고, = 클릭시, 계산결과값이 출력되게 하세요
+    [      2*6]
+    1  2  3  + 
+    4  5  6  -
+    7  8  9  *
+    C  0  =  /
+    
+    1) 화면 구현
+    	5x4 테이블 
+    2) 요소 객체 선택 및 이벤트 처리
+    	개별적으로 onclick = "함수"
+    	var tds = document.querySelectorAll("td");
+    	for(var idx=0; idx<tds.length;idx++) {
+    		tds[idx].onclick = function () {
+    			;
+    		}
+    	}
+    3) 이벤트를 통해 해당 cell에 있는 문자열 가져오기
+    4) 가져온 문자열을 상단에 표시하기
+    5) = 클릭시 eval()함수로 연산 결과값 처리 
+    
+    
+~9:30까지 진행해보세요.
+*/
+
+#cal {
+	font-size:40px;
+	text-align:center;
+}
+
+</style>
+</head>
+<body>
+
+	물건명 : <input type="text" id="txtName"><br>
+	가격 : <input type="text" id="txtPrice"><br>
+	갯수 : <input type="text" id="txtCnt"><br>
+	<input type="button" onclick="add()" value="등록" id="btnAdd"><br>
+	<div id="div01"> </div>
+	<hr>
+	<h3>구매물건등록</h3>
+	물건명 : <input type="text" id="txtName2"><br>
+	가격 : <input type="text" id="txtPrice2"><br>
+	갯수 : <input type="text" id="txtCnt2"><br>
+	<input type="button" onclick="append()" value="등록" id="btnAdd2"><br>
+	<h3>구매물건리스트</h3>
+	<table id="tab" border>
+	<thead>
+		<tr><th>번호</th><th>물건명</th><th>가격</th><th>갯수</th><th>계</th></tr>
+	</thead>
+	<tbody> </tbody>
+	</table>
+	<hr>
+	<table id="cal" border width="400" height="500">
+		<tr><td colspan="4" id="show" style="padding:5px; text-align:right; height:50px;">0</td></tr>
+		<tr><td>1</td><td>2</td><td>3</td><td>+</td></tr>
+		<tr><td>4</td><td>5</td><td>6</td><td>-</td></tr>
+		<tr><td>7</td><td>8</td><td>9</td><td>*</td></tr>
+		<tr><td>C</td><td>0</td><td>=</td><td>/</td></tr>
+	</table>
+</body>
+<script type="text/javascript">
+
+
+// 1. 
+function plus(num01, num02=0, num03=0){
+	return num01 + num02 + num03;
+}
+
+
+// 4.
+var person = {name:'홍길동', age:30, loc:'신림동'};
+
+// 1) 속성의 확인 : in 예약어를 사용해 해당 객체의 속성이 맞는지 확인, boolean값 리턴
+//console.log(age in person);
+
+// 2) 속성의 사용 : with 예약어를 사용해 해당 객체에 포함되는 속성 사용
+with(person){
+	console.log(" 이름 : " + name);
+	console.log(" 나이 : " + age);
+	console.log(" 지역 : " + loc);
+}
+
+
+
+// 5. 
+var obj = {
+		name:'홍길동', // 문자열
+		age:30, // 정수
+		dept:2,
+		deptList:['인사팀', '총무팀', '전산팀'], // 배열
+		isDept:this.dept==2?'전산팀':'오류',
+		salary:function(day){
+			return 50000 * day;
+		}
+};
+
+console.log("5번 문제");
+console.log(obj.name);
+console.log(obj.age);
+console.log(obj.dept);
+console.log(obj.isDept);
+console.log(obj.salary(30));
+
+
+// 6. 
+var txtname = document.querySelector("#txtName");
+var txtprice = document.querySelector("#txtPrice");
+var txtcnt = document.querySelector("#txtCnt");
+var div01obj = document.querySelector("#div01");
+
+var idx = 1; 
+div01obj.innerHTML = "구매물건 리스트<br>";
+var show = div01obj.innerHTML; 
+show += "번호　물건명　가격　갯수　계<br>";
+
+function add() {
+	show += idx++ + "  " + txtname.value + "  " + txtprice.value  + "   " + 
+	txtcnt.value  + "  " + (Number(txtprice.value) * Number(txtcnt.value) + "<br>");
+	
+	div01obj.innerHTML = show;
+}
+
+
+// 풀이
+
+
+
+
+var plist = [];
+var idx = 0;
+
+function append() {
+	
+	var txtname2 = document.querySelector("#txtName2").value;
+	var txtprice2 = document.querySelector("#txtPrice2").value;
+	var txtcnt2 = document.querySelector("#txtCnt2").value;
+	var tab01 = document.querySelector("#tab tbody");
+	var prod = {pname:txtname2, price:txtprice2, cnt:txtcnt2};
+	console.log(prod);
+	
+	plist[idx++] = prod;
+	var show = "";
+	plist.forEach(function(prod, idx) {
+		show += `<tr><td>${idx+1}</td><td>${prod.pname}</td>
+				<td>${prod.price}</td><td>${prod.cnt}</td>
+				<td>${prod.price*prod.cnt}</td></tr>`;
+	});
+	
+	tab01.innerHTML = show;
+}
+
+// 7. 
+var tds = document.querySelectorAll("#cal td");
+var show = document.quetySelector("#show");
+
+    for(var idx=0; idx<tds.length;idx++) {
+    	tds[idx].onclick = function() {
+    		console.log("클릭한 td : " + this.innerText);
+    		
+    		if(show.innerText == '0') {
+    			show.innerText = '';
+    		}
+    		
+    		if(this.innerText == "=") {
+    			// eval 함수를 통해 계산된 결과값을 출력내용으로 확인할 수 있다.
+    			show.innerText = eval(show.innerText);
+    		} else if(this.innerText == "C") {
+    			show.innerText = "0";
+    		} else {
+    			show.innerText += this.innerText;
+    		}
+    	}
+   	}
+
+
+</script>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+#table
+1. 데이터를 2차원 형식으로 출력처리할 때 사용된다 
+2. 구성요소
+	1) 속성 : width, height, border
+	2) 하위요소
+		tr (table row) : 행단위 데이터 처리
+		td (table data) : 행안에 있는 열로 실제 데이터 처리 
+		
+
+*/
+
+</script>
+</head>
+<body>
+<table width="300" height="300" border >
+	<tr><td>사과</td></tr>
+</table>
+<table width="300" height="300" border >
+	<tr><td>사과</td><td>바나나</td></tr>
+</table>
+<table width="300" height="300" border >
+	<tr><td>사과</td></tr>
+	<tr><td>오렌지</td></tr>
+</table>
+<table width="300" height="300" border >
+	<tr><td>사과</td><td>바나나</td></tr>
+	<tr><td>오렌지</td><td>오렌지</td></tr>
+</table>
+
+<!-- 응용) 1x3 테이블, 3x2 테이블, 2x4 테이블, 3x3 테이블 생성하기 (2조)
+		행열 순서가 맞는지..?  -->
+<h3> 응용문제 테이블 만들기 </h3>
+<table id="tb01" width="300" height="200" border>
+	<tr><td>1번</td><td>2번</td><td>3번</td></tr>
+</table>
+<br>
+
+<table id = "tb02" width="300" height="200" border>
+	<tr><td>1번</td><td>2번</td></tr>
+	<tr><td>3번</td><td>4번</td></tr>
+	<tr><td>5번</td><td>6번</td></tr>
+</table>
+<br>
+
+<table id="tb03" width="300" height="200" border>
+	<tr><td>1번</td><td>2번</td><td>3번</td><td>4번</td></tr>
+	<tr><td>5번</td><td>6번</td><td>7번</td><td>8번</td></tr>
+</table>
+<br>
+
+<table width="300" height="200" border>
+	<tr><td>1번</td><td>2번</td><td>3번</td></tr>
+	<tr><td>4번</td><td>5번</td><td>6번</td></tr>
+	<tr><td>7번</td><td>8번</td><td>9번</td></tr>	
+</table>
+
+
+</body>
+<script type="text/javascript">
+
+	// 테이블 객체 지정
+	var tab01 = document.querySelector("#tb01");
+	// #tab01 td : 아이디로 테이블 tab01 하위의 모든 td 선택
+	var t01Tds = document.querySelectorAll("#tb01 td");
+
+	// idx<t01Tds.length : idx는 배열의 갯수보다 1적게 처리 
+	for(var idx=0;idx<t01Tds.length;idx++) {
+		// 각 td안에 있는 글자를 출력처리
+		t01Tds[idx].innerText = idx + "번째당";
+	}
+	
+	
+	
+	// 응용) 3x2 테이블에 번호를 1~6까지 js로 입력처리하기 (3조)
+	var tab02 = document.querySelector("#tb02");
+	tab02.align = "center";
+	var t02Tds = document.querySelectorAll("#tb02 td");
+	
+	// 랜덤 번호를 생성해서 해당 인덱스의 배경색을 노랑색으로 변경
+	var ranIdx = parseInt(Math.random()*6);
+	t02Tds[ranIdx].backgroundColor = "yellow";
+	
+	for(var idx = 0; idx < t02Tds.length; idx++) {
+		// 삽입되는 순서가 한행채우고 다음행 (오른쪽으로 삽입)
+		t02Tds[idx].innerText = (idx+1) + "데이터 삽입";
+		
+		// 클릭하면 익명함수로 배경색 변경
+		t02Tds[idx].onclick = function() {
+			this.style.backgroundColor = "orange";
+		}
+	}
+	
+	
+	// 응용) 2x4 테이블에 임의로 폭탄이 있는 cell의 index를 지정하고
+	//		클릭시 배경색상이 파랑색으로 변경되다가 폭탄cell 클릭시 
+	//		"꽝" 출력, 배경색 빨강색 변경
+	var tab03 = document.querySelector("#tb03");
+	var t03Tds = document.querySelectorAll("#tb03 td");
+	
+	
+	var ranIdx = parseInt(Math.random()* t03Tds.length);
+	
+	for(var idx=0;idx<t03Tds.length;id ++){
+		t03Tds[idx].onclick = function() {
+			this.style.backgroundColor = "blue";
+		}
+		
+		t03Tds[ranIdx].onclick = function() {
+			this.style.backgroundColor = "red";
+			this.innerHTML = "<b>꽝</b>";
+		}
+	} 
+	
+	// 풀이
+	for(var idx=0;idx<t03Tds.length;idx++) {
+		t03Tds[idx].innerText = (idx+1);
+		// <td id = "0"으로 설정해서 각각의 id 속성으로 index 번호를 입력처리
+		// 클릭시 random값과 비교하기 위해 설정
+		t03Tds[idx].id = idx;
+		
+		// this.id : 위의 코드로 id로 index값을 매핑한 속성
+		//	0~7까지 임의의 수와 비교 
+		t03Tds[idx].onclick = function() {
+			if(this.id == ranIdx2) {
+				// 해당 td의 레이블이 꽝이라는 글자와 배경색상을 red로
+				this.innerText = "꽝";
+				this.style.backgroundColor = "red";
+			} else {
+				// 글자배경색만 blue로 처리
+				this.style.backgroundColor = "blue";
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+</script>
+</html>

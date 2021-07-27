@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
+<style type="text/css">
+
+/*
+
+실습) 다 같은 h3 태그 중에서 내가 지정하는 태그들만 배경색 지정한다고 할대
+class를 지정해서 해당 클래스에 지정
+-> h3태그중에 클래스가 main인것만 지정
+
+
+선택자1, 선택자2 {}
+두개의 선택자를 한번에 속성과 속성값으로 설정
+
+*/
+
+
+h3.main{background-color:aliceblue;}
+
+h3, li{color:brown;}
+
+h4.flower{background:yellow;}
+
+</style>
+</head>
+<body>
+	<h2> 웹 프로그래밍1!!</h2>
+	<h3 class = "main"> 웹 프로그래밍2!!</h3>
+	<h2 class = "main"> 웹 프로그래밍3!!</h2>
+	<h3> 웹 프로그래밍4!!</h3>
+
+
+	<ul id="list">
+		<li> HTML5 </li>
+		<li> CSS </li>
+		<li> JAVA Script </li>
+	</ul>
+	
+<!--  
+
+응용) h4 태그 5개를 색상으로 임의로 표현하고
+	해당 내용 중 1, 4번째 클래스의 배경색상을 노랑색으로 처리하기 
+	(h4로 특정한 클래스만) 하기 
+
+ -->	
+	
+	<h4 class="flower" style="color:red;"> 1번째 </h4>
+	<h4 style="color:orange;"> 2번째 </h4>
+	<h4 style="color:green;"> 3번째 </h4>
+	<h4 class="flower" style="color:blue;"> 4번째 </h4>
+	<h4 style="color:purple;"> 5번째 </h4>
+	
+</body>
+</html>

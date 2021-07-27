@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#내장함수 - eval("문자열코드")
+1. 매개변수로된 문자열 코드를 실행코드로 변환하여 실행처리한다 
+ex) eval("2+3") -> 5 출력(결과값 처리)
+
+*/
+
+</style>
+</head>
+<body>
+	실행할 자바스크립트 코드<br>
+	<textarea rows="10" cols="30" id="txtArea"></textarea>
+	<input type="button" value="실행" onclick="evalEvent()">
+	<div id="div01"></div>
+</body>
+<script type="text/javascript">
+
+var willExe = "";
+willExe += "var num01 = 10;";
+willExe += "alert(num01);"
+
+console.log(willExe);
+//문자열로 된 코드를 실행해준다..
+eval(willExe);
+
+
+// 응용) textarea로 입력받은 코드를 eval을 이용해 처리 (4조)
+var txtarea = document.querySelector("#txtArea");
+var div01OBj = document.querySelector("#div01");
+
+function evalEvent() {
+	if(txtarea.value != "") {
+		eval(txtarea.value);
+		console.log(txtarea.value);
+	} else {
+		div01OBj.innerText = " 내용을 입력하세요 ";
+	}
+}
+
+</script>
+</html>

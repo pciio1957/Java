@@ -1,0 +1,39 @@
+
+
+#SVN
+1. 원격접속 소스 공유
+	version 관리
+	client(개인PC)  server(SVN) 
+	
+	client(개인PC)
+	
+2. 주요기능
+	commit : 서버에 데이터 전송
+	update : 서버에 전송된 파일 받기
+	
+3. 순서
+선생님 소스코드 공유폴더 연결설정
+주의) 학원에서 랜선연결하거나 와이파이로 연결(집에서는 안됨)
+	1) 툴바 help>window>MarketPlace>Subclipse 4.3.3 설치
+	2) 툴바 window>show View>other>SVN>SVN Repositories 선택
+	3) 아래 SVN Repositories 생긴 곳에서 오른쪽 마우스>new
+		>Repository Location>URL작성 https://211.63.89.68/svn/web >finish
+	4) Accept Digital Certi~>accept~선택
+		>username(future)/pass(7777) 세이브 체크
+	5) SVN Repositories에 작성한 URL로 연결되었으면 
+		File>import>SVN>checkout projects from SVN 선택>new 
+	6) 선생님이 파일을 commit하면 해당 폴더의 오른쪽 버튼
+		>team>update to head? 버튼 누르고 새로고침하면 업로드한 파일이 나타남
+		
+4. 설치순서(선생님이 작성해주신거)
+	1) help -> eclipse marketplace > svn 검색 > subclipse 4.3.3 설치
+	2) window > show view > other > SVN 하위에 svn repositories 선택 후 open
+	3) 마우스 오른쪽 클릭 > new > repositories location 선택 >
+		url 작성 : https://211.63.89.68/svn/web > finish > accept permemently 클릭
+		username: future / pass:7777 > 비번 세이브 체크
+	4) project exploror 오른쪽 마우스 클릭 > import > import >
+		SVN > checkout project > select folder에서 javaexp 폴더 클릭후 next >
+		받아오는 폴더 이름을 변경해서 완료~!!
+	
+	
+	

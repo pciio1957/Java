@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+# 정리문제
+1. 테이블관련 css 속성을  table 속성과 td,th 속성을 나누어 속성값과 함께 기술하세요.
+	table 
+		1) border : 크기, 스타일, 컬러
+		2) collapse : 이중선 결합
+		3) td,th : border, width, height, padding
+				:hover, :nth-child(even|odd|2n+1..)
+2. 장바구니현황을 나타나는 데이터를 table로 나타내되 아래의 화면 기능을 포함하세요.
+    1) 테이블은 중앙에 전체화면 대비 70%, 전체 선은 1라인으로 출력
+    2) 타이틀은 하단이 이중선, 배경색상과 글자색상 지정
+    3) 짝수 선언에 연한 배경색상 처리
+    4) 마우스 오버된 행에는 배경색상과 글자색상, 글자 크기를 다르게 표현처리
+3. confirm, prompt과 while문을 활용하여,
+    물건을 계속 입력하시겠습니까?, 물건명입력을 변수로 받아서, 취소를 클릭시까지
+    입력받은 후, 아래와 같이 출력하세요.
+    no  물건
+    1   @@@
+    2   @@@
+4. js의 데이터 유형 5가지를 간단한 예제와 함께 기술하세요.
+~ 9:30까지 진행하고, 시간 더 드리겠습니다
+*/
+
+#tab01 {
+	border:1px solid; 
+	border-collapse:collapse;
+}
+#tab01 tr th {
+	border:2px dotted red; 
+	text-align:center;
+	padding:10px;
+	height:40px;
+}	
+#tab01 tr td {
+	border:2px solid blue;
+	text-align:right;
+}
+
+#cart {
+	border:1px solid Gold;
+	border-collapse:collapse;
+	width:70%;
+}
+
+#cart tr th {
+	border:2px double green;
+	background:yellowgreen;
+	color:blue;
+}
+
+/* 행단위로 짝수행 지정 */
+#cart tr:nth-child(even) {
+	background:#E4F7BA;
+}
+
+#cart th:hover, #cart td:hover {
+	background:#FFC19E;
+	color:#F361A6;
+	font-size:20px;
+}
+
+</style>
+</head>
+<body>
+
+
+	<table id="tab01">
+		<tr>
+			<th>물건명</th>
+			<th>가격</th>
+			<th>재고</th>
+		</tr>
+		<tr>	
+			<td>사과</td>
+			<td>3000</td>
+			<td>10</td>
+		</tr>
+		<tr>	
+			<td>바나나</td>
+			<td>2000</td>
+			<td>9</td>
+		</tr>
+		<tr>	
+			<td>딸기</td>
+			<td>15000</td>
+			<td>5</td>
+		</tr>
+	</table><br>
+	
+	
+	<table id="cart">
+		<tr>
+			<th>물건명</th>
+			<th>가격</th>
+			<th>수량</th>
+		</tr>
+		<tr>	
+			<td>사과</td>
+			<td>3000</td>
+			<td>3</td>
+		</tr>
+		<tr>	
+			<td>바나나</td>
+			<td>2000</td>
+			<td>1</td>
+		</tr>
+		<tr>	
+			<td>딸기</td>
+			<td>15000</td>
+			<td>1</td>
+		</tr>
+	</table>
+	
+	<h4>3번</h4>
+	
+</body>
+<script type="text/javascript">
+
+var idx=1;
+document.write("no  물건<br>");
+while(confirm("입력하시겠습니까?")){
+	var pname = prompt("물건명을 입력하세요");
+	if(pname != 'null') {
+		document.write(idx + "&nbsp;&nbsp;&nbsp;" + pname + "<br>");
+	}
+	
+}
+document.write("<br><br>");
+
+/*
+
+do-while문은 일단 1번 진행하고 반복 조건을 체크하여 진행한다
+do {
+	// prompt에 취소 클릭시 문자열로 'null'이 처리된다.
+	var pname = prompt("물건명을 입력하세요");
+	if(pname != 'null') {
+		document.write(idx + "&nbsp;&nbsp;&nbsp;" + pname + "<br>");
+	}
+	
+}while(confirm("입력하시겠습니까?"))
+ 
+*/
+
+
+// 4번
+var name = "홍길동";
+var age = 25;
+var ageCk = age < 40;
+var nmCk = function nameCk(name) {
+	return name.length;
+}
+var objs = {
+		name:"이길동",
+		age:30,
+		ageCk:this.age < 40,
+		nmCk:function(name){
+			return name.length;
+		}
+			
+}
+
+document.write("4-1번 이름 : " + name + "<br>");
+document.write("4-1번 나이 : " + age + "<br>");
+document.write("4-1번 나이(40세이하?) 확인 : " + ageCk + "<br>");
+document.write("4-1번 이름길이확인 : " + nmCk(name) + "<br><br><br>");
+document.write("4-2번 이름 : " + objs.name + "<br>");
+document.write("4-2번 나이 : " + objs.age + "<br>");
+document.write("4-2번 나이(40세이하?) 확인 : " + objs.ageCk + "<br>");
+document.write("4-2번 이름길이확인 : " + objs.nmCk(objs.name) + "<br>");
+
+</script>
+</html>

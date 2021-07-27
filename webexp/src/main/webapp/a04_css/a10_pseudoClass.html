@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+
+#구조 선택자
+1. 구조에 따라 특정한 위치에 속하는 태그를 선택할 수 있는 선택자를 말한다.
+2. 주요키워드 
+	child : 같은 부모를 둔 형제 객체를 지칭할 때 사용되는 말이다. 
+	nth- : 순서를 지정하는 부분으로 위 접미어와 합성하여 같은 부모를 둔
+		특정한 위치에 있는 요소객체를 선택할 때 사용된다. 
+		ex) nth-chile(1)
+		nth-chile(반복할횟수n+1) : 같은 부모를 둔 반복할 횟수로 해당
+			css 선언할 때 사용된다.
+			
+	
+	응용1) div 하위에 h2 6개씩 넣고
+	h2의 두번째 글자 색상을 노랑색
+	h2의 3개씩 단위로 배경색상이 파랑색이 되게 처리하세요 (1조)
+	
+	응용2) 테이블의 td의 첫번째를 클릭하세요라고 표시(js)하고
+		첫번째를 클릭하면 배경색이 변하고 글자 내용이 
+		클릭되었습니다로 출력되게 하기 (2조)
+	
+	응용3) table 3x3 테이블을 만들고 첫번째와 마지막 td의 배경색을 노랑색으로
+		클릭하면 중앙 정렬 하면서 ★로 표시 (2, 3조)
+	
+	문제 풀이의 방해요인
+	1. 에러 처리 f12
+	2. 태그의 기본 속성, css 속성, js의 속성
+	3. 배열 index에 대한 이해, for문과의 관계
+
+*/
+
+</script>
+<style>
+
+td:nth-child(1) {
+	background-color:yellow;
+	
+}
+
+tr:nth-child(2n+1) {
+	background-color:pink;
+}
+
+h2:nth-child(2) {
+	color:yellow;	
+}
+
+h2:nth-child(3n+1) {
+	background:blue;
+}
+
+</style>
+</head>
+<body>
+
+<table width="70%" border>
+	<tr> <td>번호</td> <td>물건명</td> <td>가격</td></tr>
+	<tr> <td>번호</td> <td>물건명</td> <td>가격</td></tr>
+	<tr> <td>번호</td> <td>물건명</td> <td>가격</td></tr>
+	<tr> <td>번호</td> <td>물건명</td> <td>가격</td></tr>
+	<tr> <td>번호</td> <td>물건명</td> <td>가격</td></tr>
+</table>
+
+<table width="70%" border>
+	<tr> <td>번호</td> <td>물건명</td> <td>가격</td></tr>
+	<tr> <td>번호</td> <td>물건명</td> <td>가격</td></tr>
+	<tr> <td>번호</td> <td>물건명</td> <td>가격</td></tr>
+	<tr> <td>번호</td> <td>물건명</td> <td>가격</td></tr>
+	<tr> <td>번호</td> <td>물건명</td> <td>가격</td></tr>
+</table>
+
+<div>
+	<h2>1번</h2>
+	<h2>2번</h2>
+	<h2>3번</h2>
+	<h2>4번</h2>
+	<h2>5번</h2>
+	<h2>6번</h2>
+	
+</div>
+
+<table id="tab01">
+	<tr><td>첫번째 </td></tr>
+	<tr><td>두번째 </td></tr>
+	<tr><td>세번째 </td></tr>
+	<tr><td>네번째 </td></tr>
+</table>
+
+<table width="70%" border id="tab01">
+	<tr><td>1번쨰 1번</td><td>1번쨰 2번</td><td>1번쨰 3번</td></tr>
+	<tr><td>2번쨰 1번</td><td>2번쨰 2번</td><td>2번쨰 3번</td></tr>
+	<tr><td>3번쨰 1번</td><td>3번쨰 2번</td><td>3번쨰 3번</td></tr>
+</table>
+
+</body>
+<script type="text/javascript">
+
+// 응용2) 테이블의 td의 첫번째를 클릭하세요라고 표시(js)하고
+// 첫번째를 클릭하면 배경색이 변하고 글자 내용이 클릭되었습니다로 출력되게 하기 (2조)
+// tds 가져오는 걸 td:first-child 라고 했어야하는데 그냥 아이디를 이용해서 가져옴 
+var tds = document.querySelectorAll("td:first-child");
+
+for(var idx=0;idx<tds.length;idx++) {
+	tds[idx].onclick = function() {
+		this.style.backgroundColor = "yellow";
+		this.innerText="클릭되었습니다";
+	}	
+}
+
+// 응용3) 3x3 크기의 테이블을 만들고 첫번째와 마지막의 td의 배경색이 노랑색으로 지정,
+// 		클릭했을 때 중앙 정렬하면서 ★로 표시되도록 하기  (2,3조)
+
+var selectTds = document.querySelectorAll("#tab01 td:first-child, #tab01 td:last-child");
+
+for(var idx=0;idx<selectTds.length;idx++) {
+	selectTds[idx].style.backgroundColor = "yellow";
+	
+	// 문제점 : 테이블의 칸을 클릭하면 중앙정렬, 내용이 변경되어야하는데 안바뀜s
+	selectTds[idx].onclick = function() {
+		selectTds[idx].style.textAlign = "center";
+		selectTds[idx].innerText = "★";
+	} 
+}
+
+/*
+td:nth-child(1) : 첫번째거 선택
+td:nth-child(3) : 세번째거 선택
+td:nth-child(n) : 
+td:nth-child(2n+1) : 홀수번째 선택
+td:nth-child(3n) : 3개단위로 가져오기 
+
+
+h2,h3 {color:yellow;} -- h2, h3의 배경색을 노랑색으로 ㅈ지정
+
+
+
+*/
+
+</script>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#CSS로 표꾸미기
+1. table 속성
+	border : 테이블 전체 테두리에 대한 옵션 설정
+		- 굵기, style, 색상 
+	border-collapse : 테이블에 종속된 td, th의 중복적인 테두리를 합치는 옵션
+		- collapse;	
+
+2. td, th 속성
+	border : 각 셀에 대한 이중 border에 대한 옵션을 설정할 수 있다
+	text-align : 정렬에 대한 처리 
+	padding : 글자와 border의 사이 간격설정
+	height: 높이 설정
+	
+3. 화면 처리시
+	1) 행별로 짝수행에 대한 색상처리 
+		ex) tr:nth-child(2n) {background-color:aliceblue;}
+			thr:nth-child(even) {background-color:aliceblue;}
+	2) 행별로 마우스 오버시 해당 행에 대한 처리
+		ex) tr:hover {color:yellow, font-size:15px;}
+	
+*/
+
+	#tab01 {width:70%; border:1px solid blue; border-collapse:collapse;}
+	td, th{border:1px dotted red;}
+	
+	#tab02 {border:1px solid green; border-collapse:collapse;}
+	#tab02 tr th{border:1px solid orange;}
+	#tab02 tr td{border:1px dotted red;}
+	
+	/* 보통 숫자는 오른쪽 정렬 */
+	th, td {padding:10px;}
+	thead, tfoot {height:50px;}
+	td {text-align:right; }
+	.showTxt { text-align:center; }
+	
+</style>
+</head>
+<body>
+	<table id="tab01">
+		<thead> 
+			<tr><th>이름</th><th>HTML</th><th>CSS</th></tr>
+		</thead>
+		<tfoot>
+			<tr><th>합</th><th>310</th><th>249</th></tr>
+		</tfoot>
+		<tbody>
+			<tr><td class="showTxt">황기태</td><td>80</td><td>70</td></tr>
+			<tr><td class="showTxt">이재문</td><td>95</td><td>99</td></tr>
+			<tr><td class="showTxt">이병은</td><td>85</td><td>90</td></tr>
+			<tr><td class="showTxt">김남윤</td><td>50</td><td>40</td></tr>
+		</tbody>
+	</table>
+	
+	<table id="tab02">
+		<thead>
+			<tr><th>이름</th><th>국어</th><th>영어</th><th>수학</th></tr>
+		</thead>
+		<tbody>
+			<tr><td>황기태</td><td>80</td><td>70</td><td>76</td></tr>
+			<tr><td>이재문</td><td>85</td><td>75</td><td>65</td></tr>
+			<tr><td>이병은</td><td>90</td><td>82</td><td>84</td></tr>
+			<tr><td>김남윤</td><td>95</td><td>88</td><td>92</td></tr>
+		</tbody>
+	</table>
+
+<!--  응용) 테이블을 하단에 추가하고 이름 국어 영어 수학 점수를 출력하되
+		상단 테이블과 하단에 데이터와 구분하는 이중라인을 나타내고 
+		테이블 선과 th, td 선에 대한 색상을 다르게 처리하기 (2조)  -->
+		
+<!--  응용) css 속성을 활용하여 td를 클릭하면 중앙정렬, 배경색 노랑색, 
+		width, height를 변경처리하기 (3조) -->
+</body>
+<script type="text/javascript">
+
+var tdObjs = document.querySelectorAll("td");
+
+for(var idx=0; idx < tdObjs.length; idx++) {
+	
+	tdObjs[idx].onclick = function() {
+		this.style.textAlign = "center";
+		this.style.backgroundColor = "yellow";
+		this.style.color = "blue";
+		this.style.width = "50px";
+		this.style.height = "40px";
+	}
+}
+
+</script>
+</html>

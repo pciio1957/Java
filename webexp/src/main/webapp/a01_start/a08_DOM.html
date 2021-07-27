@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM</title>
+</head>
+<body>
+	<!--  changeH2에 선언된 기능메소드에 this를 통해서 h2의 정보를 
+	모두 다 매개변수를 통해서 전달한다  -->
+	<!-- 함수명(this) : 이 객체가 가지고 있는 모든 정보(속성)을 한번에 전달 -->
+	<h2 onclick="changeH2(this)"> 안녕하세요 DOM 실습중입니다 </h2>
+	<h3 onclick="appleChange(this)"> 사과 </h3>
+</body>
+
+<script type="text/javascript">
+	// body에 있는 내용을 DOM이 인식하기 위해 객체 선언 후 호출해야함
+	
+	var h2Obj = document.querySelector("h2");
+	
+	// 객체. innerHTML : 해당 <h2> 입력할 내용 </h2> 입력할 내용 부분을 변경
+	h2Obj.innerHTML = "Hello!!";
+
+	function changeH2(obj) {
+		alert("클릭되었습니다!");
+		obj.innerHTML = "변신은 무죄";
+	}
+	
+	
+	// 응용1) h3에 사과를 표시, 하단에 DOM객체를 이용해 사과(초기)로 변경
+	// 		클릭시 바나나로 변경 
+	var appleObj = document.querySelector("h3");
+	appleObj.innerHTML = "사과(초기)";
+	
+	function appleChange(appleObj) {
+		// appleObj : 위에 함수로 전달해서 받는 지역변수로 개발자가 이름 지정
+		alert("과일이 변경됩니다!");
+		appleObj.innerHTML = "바나나~!!";
+		appleObj.style.backgroundColor="yellow";
+		appleObj.style.color="blue";
+		appleObj.align = "center";
+		// 엄청 강렬한 바나나가 됨 
+	}
+	
+</script>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+#복습문제
+1. 초기 <table></table>화면에 구성된 내용을 2X2테이블로 javascript 코드로
+만들어 보세요.
+2. hyperlink의 기본 속성에 대하여 기술하세요.
+	hyperLink는 다른 html이나 외부페이지로 이동할 수 있게 해주는 태그이다.
+	뿐만 아니라 target을 지정해서 html페이지가 뜨는 위치를 지정해줄 수 있다. 
+	
+	<a href="외부사이트/내부페이지/js함수">링크할 페이지의 키워드</a>
+	+ target속성 : 프레임이름 지정, 옵션으로 top/_parent 등이 있음 
+	
+3. a 태그를 이용해서, 외부페이지, 내부페이지, javascript 함수호출예제를 코드로 만드세요.
+4. a 태그와 iframe의 링크연동을 기본예제를 통하여 설명하세요.
+5. 물건명 [  ] 가격 [   ][등록] - 해당 버튼을 클릭시 마다 테이블에 물건이 추가 등록되게 처리.
+	번호  물건명 가격
+	1    @@    @@
+	
+	(이쪽 풀이가 많아서 새로운 a0623exp2.html에서 풀이)
+
+*/
+
+</script>
+</head>
+<body>
+<!-- 1번 -->
+<h2>1번</h2>
+<table id="tab01" width="200" height="200" border></table><br>
+
+<!-- 1번 풀이추가 -->
+<table id="tab011" width="200" height="200" border></table><br>
+
+
+<!-- 2번 예제추가 -->
+외부페이지 <a href="http://www.naver.com">네이버</a><br>
+내부페이지 <a href="../../a02_html/a01_basic.html">내부페이지이동(상대경로)</a><br>
+js함수페이지 <a href="javascript:call())">네이버</a><br><br>
+
+
+<!-- 3번 -->
+<ul>
+<li><a href="http://www.naver.com">네이버</a></li>
+<li><a href="http://www.daum.net"> 다음</a></li>
+<li><a href="a12_hyperLink.html">hyperLink 설명보기</a></li>
+<li><a href="javascript:go()">프론트 설명보기</a></li>
+</ul><br>
+
+<!-- 4번 -->
+<!-- 이렇게 설정했는데 왜 새창으로 뜨는지 모르겠습니당.. -->
+<!-- 해결..!!! iframe에 id가 아니라 name을 지정해야함 -->
+<a href="http://www.naver.com" target="if1">네이버 보기</a>
+<a href="a22_vidwo.html" target="if1">진도나가기</a><br>
+<iframe name="if1" src="a01_basic.html" width="200" height="200"></iframe><br>
+
+<!-- 4번 풀이추가 -->
+<a href="a01_basic.html" target="frame1"> [6/15] </a>
+<a href="a02_basic2.html" target="frame1"> [6/17] </a>
+<a href="a03_basic3.html" target="frame1"> [6/19] </a>
+<iframe name="frame1" src="a18_prod1.html" width="300" height="300"></iframe><br><br>
+
+<!-- 5번 -->
+<br><br>
+물건명 : <input id="txtname" type="text" width="10">
+가격 : <input id="txtprice" type="text" width="10">
+<input id="btnAdd" type="button" value="등록"><br>
+<br>
+<table id="tab02" width="200" height="200" border>
+
+</table>
+
+</body>
+<script type="text/javascript">
+
+// 1.
+var tbObj1 = document.querySelector("#tab01");
+var show = tbObj1.innerHTML;
+for(var x=0; x<2; x++) {
+	show += "<tr>";
+	
+	for(var y=0; y<2; y++) {
+		show += "<td>" + (x+1) + "의" + (y+1) + "번째 </td>";
+	}
+	show += "</tr>";
+}
+tbObj1.innerHTML = show;
+
+// 1. 풀이 - 자바스크립트를 이용해서 테이블을 만들어라.
+// 화면에 있는 태그를 js에 의해 DOM으로 선언해서 
+// 여러가지 함수와 이벤트를 통해서 동적인 속성과 내용 변경을 할 수 있다.
+// 테이블의 외관설정
+var tab11 = document.querySelector("#tab011");
+tab11.border = "1"; // 테두리설정
+tab11.width = "200";
+tab11.height = "200";
+tab11.align = "center";
+
+// 테이블의 내부데이터설정
+var show = "<tr><td>1</td><td>2</td></tr>";
+show += "<tr><td>3</td><td>4</td></tr>";
+tab11.innerHTML = show;
+
+
+// 2. 
+function go() {
+	location.href = "a01_basic.html";
+}
+
+function call() {
+	alert("함수호출");
+	location.href = "a11_tableAction3.html";
+}
+
+
+// 5.
+var taObj2 = document.querySelector("#tab02");
+var btnAdd = document.querySelector("#btnAdd");
+var txtName = document.querySelector("#txtname");
+var txtPrice = document.querySelector("#txtprice");
+
+
+var idx = 1;
+btnAdd.onclick = function() {
+	var show = taObj2.innerHTML;
+	
+	show += "<tr>";
+	for(var x=0; x<1; x++) {
+		show += "<td>" + idx + "</td><td>" + txtName.value + "</td><td>" + txtPrice.value + "</td>";
+	}
+	
+	show += "</tr>";
+	idx++;
+	taObj2.innerHTML = show;
+}
+
+
+</script>
+</html>

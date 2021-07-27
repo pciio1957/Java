@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+
+*/
+
+</style>
+</head>
+<body>
+
+	<table id="tab01"></table>
+
+</body>
+<script type="text/javascript">
+
+/*
+
+// 응용1) 위 회원정보를 json 배열로 선언하고 아래와 같이 출력하기 (1조)
+		번호 회원명
+		1	홍길동
+		
+	응용2) 위 회원정보에 내용을 추가 (2조)
+		번호 회원명 아이디  패스워드 권한    포인트
+		1 	홍길동 himan 7777  admin  1000
+		
+
+*/
+
+var member = {name:'홍길동', id:'himan', pw:'7777', grant:'admin', point:1000};
+var tab01Obj = document.querySelector("#tab01");
+var show = "<tr><th>번호</th><th>회원명</th><th>아이디</th><th>패스워드</th><th>권한</th><th>포인트</th></tr>";
+var idx = 0;
+show += "<tr><td>" + (idx+1) + "</td>";
+for(var pro in member) {
+	show += "<td>" + member[pro] + "</td>";
+} 
+show += "</tr>";
+
+tab01Obj.innerHTML = show;
+
+
+
+
+
+
+</script>
+</html>

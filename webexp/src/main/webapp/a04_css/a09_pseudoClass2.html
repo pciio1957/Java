@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+	input:focus{
+		background-color:yellow;
+	}
+	
+	input[type="text"]:focus{
+		background-color:pink;
+	}
+
+</style>
+<script type="text/javascript">
+
+/*
+
+*/
+
+</script>
+</head>
+<body>
+	<!-- 해당 컨트롤로 포커스가 가면 적용할 속성을 css에서 input:focus로 지정 -->
+	아이디 : <input type="text"/>
+	패스워드 : <input type="password"/><br>
+	이름 : <input type="text" name="name"/>
+	
+	<br><hr><br>
+	
+	<h3> 등록할 물건의 정보 입력 </h3>
+	물품명 : <input type="text"/ name="pname">
+	가격 : <input type="text" name="price"/>
+	갯수 : <input type="text" name="cnt"/>
+	
+</body>
+<script type="text/javascript">
+
+var nameObj = document.querySelector("[name=name]");
+// js 이벤트에 의한 처리 
+// 객체.onfocus = function() { 처리할 익명함수 내용 };
+nameObj.onfocus = function() {
+	// this : 현재 이벤트가 일어나고 있는 객체 지정
+	// style.color : css의 color 속성 지정
+	// ="blue"; : 이름작성하는 컨트롤의 글씨색을 blue로 지정
+	this.style.color = "blue;";
+	
+	// this.value : 현재 입력한 값을 ""로 할당 -> 즉 삭제(초기화) 처리
+	this.value = "";
+	
+}
+
+
+// 응용) 등록할 물품/가격/갯수를 설정하고
+//		css로 focus 되었을 때 배경색상을 pink 색상으로 처리하고
+//		js로 갯수부분을 focus했을 때, 물건과 가격 정보를 가져와서 
+//		console.log에 출력하기 (6조)
+
+var cntIp = document.querySelector("[name=cnt]");
+var pdIp = document.querySelectorAll("[name=pname], [name=price]");
+var valObjs = document.querySelectorAll("input[type=text]");
+var show = "";
+
+cntIp.onfocus = function() {
+	
+	for(var idx=0; idx<pdIp.length;idx++) {
+		show += (idx+1) + ") " + pdIp[idx].value + " ";		
+	}
+	
+	console.log("확인 : " + show);
+	show = ""; // 다시 초기화
+	
+}
+
+</script>
+</html>

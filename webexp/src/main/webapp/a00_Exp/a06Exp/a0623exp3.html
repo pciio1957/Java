@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+#DOM객체의 식별자
+document.querySelector("선택자"); 일때 선택자에 들어갈 수 있는 내용
+1. #아이디명 : <input id="아이디명"> <h2 id="아이디명">
+	ex) <input id="num01"/> 이런 요소가 있다고 하면
+		var numObj1 = document.querySelector("#num01"); 으로 받아올 수 있다.
+
+2. 태그명 : <input>, <h2>, <table>, <tr>, <td>
+	ex) <h2>  : 1개의 태그가 있을때
+		<td></td><td></td> : 여러개의 태그가 있을 때
+		var h2Obj = document.querySelector("h2"); // h2가 하나만 있어서 가져올때
+		var tds = document.querySelectorAll("td"); // td들을 배열로 가져오기
+		// tds의 경우 배열로 처리되고, tds[index:0부터시작], tds.length : 배열의 크기
+		
+3. 클래스명 : 여러 개의 태그가 있을 때 원하는 태그들만 그룹을 지어서 사용할 수 있다.
+	<h3> 
+	<h3 class="ch01"> 
+	<h3 class="ch01"> 
+	<h4> 
+	<h4 class="ch01"> 
+	
+	//이렇게 지정하게 되면 역시 배열로 처리해야한다. 
+	var ch01Arry = document.querySelectorAll(".ch01");
+		
+4. 태그[속성=속성값] : 제일 중요한 속성으로 태그에서 파생된 선택자 형식 
+	1) 태그 [속성=속성값] : 태그, 속성, 속성값을 지정함
+		ex) h2[align=center] h2중에 속성과 속성값 
+	2) [속성=속성값] : 속성과 속성값을 가진 태그들을 지정함 
+		ex) [name=num01], [align=right], [src=img01.jpg]
+	3) [속성] : 이 속성이 있기만 해도 선택해줌
+		ex) [align]  
+	
+	<h3 align="center"> : align 속성을 가짐/ 속성값은 center 
+	<table align="center" width="300" height="300" > : align, width,height 속성을 가짐/
+		속성값은 center, 300, 300 을 가짐
+	<img src="img01" width="200" > : src, width 속성을 가짐/ 속성값은 img01, 200을 가짐 
+	
+	
+	사용예시))
+	// 이렇게 작성하면 위의 name이 num01인 태그 지정 
+	<input name="num01"/>
+	var num01 = document.querySelector("[name=num01]"); 
+		
+	// 해당 속성을 가진 태그들이 모두 지정됨 
+	<h2 align="center">
+	<h4 align="right">
+	<h3 align="left">
+	<h4 align="center">
+	<h5 align="right">
+	var arry = document.querySelectorAll("[align]"); 
+	
+	// 다중의 내용을 단일로 선택하면 화면기준으로 첫번째를 선택하여 DOM객체로 사용한다.
+	<h2 align="center">
+	<h4 align="right">
+	<h3 align="left">
+	<h4 align="left">
+	<h5 align="right">
+	var chObj = document.querySelector("[align=left]");
+	
+	// 선택자
+	document.querySelector() : 단일선택
+	document.querySelectorAll() : 다중선택
+	
+	
+5. id속성과 name속성의 사용시 차이점
+	1) name 속성 : client단 선택자로 서버에 데이터를 전송할 때
+	2) id 속성 : client단에 화면에 유일 선택자로만 사용할 때 활용된다. 사용시 #아이디명..
+	
+	
+*/
+
+</script>
+</head>
+<body>
+
+회원아이디 : <input type="text" id="id">
+회원명 : <input type="text" id="name">
+<input type="button" id="add" value="등록">
+
+<br>
+<table id="tab01" width="500" height="100" border> 
+<tr><th>번호</th><th>아이디</th><th>회원명</th></tr>
+</table>
+
+<br><br>
+컴퓨터부품 : <input type="text" id="txtcom">
+<input id="comadd" type="button" value="등록">
+
+<table id="tab02" width="500" height="100" border>
+<tr><th>부품리스트</th></tr>
+</table>
+
+</body>
+<script type="text/javascript">
+
+/*
+ 
+응용) 
+
+회원아이디 : []
+회원명 : []
+[등록]
+
+번호 아이디 회원명 으로 아래로 추가되도록 구현하기(4조)
+
+응용) 
+컴퓨터부품 : []
+[등록]
+부품리스트 출력하기 (4조, 5조)
+@@@ 
+
+*/
+
+// 응용1) 
+var tabObj1 = document.querySelector("#tab01");
+var txtID = document.querySelector("#id");
+var txtName = document.querySelector("#name");
+var btnAdd = document.querySelector("#add");
+var idx = 1;
+
+btnAdd.onclick = function() {
+	var idVal = txtID.value;
+	var nameVal = txtName.value;
+	
+	tabObj1.innerHTML += "<tr><td>" + (idx++) + "</td><td>" 
+		+ idVal + "</td><td>" + nameVal + "</td></tr>";
+	
+}
+
+
+// 응용2) 
+var tabObj2 = document.querySelector("#tab02");
+var txtcom = document.querySelector("#txtcom");
+var btnadd = document.querySelector("#comadd");
+
+btnadd.onclick = function() {
+	tabObj2.innerHTML += "<tr><td>" + txtcom.value + "</td></tr>";
+}
+
+</script>
+</html>

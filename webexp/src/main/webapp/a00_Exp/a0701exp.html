@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+h1:active{
+	color:blue;
+}
+
+input[type=text]:focus{
+	background:orange;
+}
+
+input[type=radio]:checked+a{
+	background:yellow;
+}
+
+</style>
+<script type="text/javascript">
+
+/*
+3. 가상선택자 중에 반응 선택자를 기술하고 h1을 기준으로 기본예제 작성하기
+	- 반응 선택자
+		1) 사용자의 반응으로 생성되는 이벤트로 크게 두가지로 나뉜다 
+			hover : 사용자가 특정 태그위에 마우스 커서를 올리면 hover 상태
+			active : 특정 태그를 마우스 클릭하면 active 상태
+		2) 기본 속성	
+			:active - 사용자가 마우스를 클릭한 태그 선택
+			:hover - 사용자가 마우스 커서를 올린 태그 선택 
+			
+4. 가상선택자 중에 상태 선택자를 input 객체를 활용하여 check와 focus를 처리하는 예제 만들기
+	- 상태 선택자
+		1) 상태의 변경에 따른 css 처리변경
+		2) 기본 속성
+			:checked - 해당 선택자가 checked가 되었을 때
+				처리할 내용에 대한 부분을 의미
+				주로 type="radio|checkbox"를 사용할 때 활용된다.
+			:focus - 해당 선택자에 focus를 위치시켰을 때 처리된다.
+				form 하위의 입력 요소객체를 사용할 때 쓰인다
+			:enabled - 해당 선택자의 요소객체가 활성화되었을 때 
+				처리할 css 속성 설정시 활용된다.
+			:disabled - 해당 선택자의 요소객체가 비활성화되었을 때
+				처리할 css 속성 설정시 활용된다. 
+				
+5. DOM객체의 메모리 로딩 순서와 함수처리 형식 3가지를 클릭이벤트 예제로 기술하기
+	- Dom 객체의 메모리 로딩 순서	
+		1) 메모리 로딩은 순서대로 로딩된다
+		2) body안에 있는 태그들을 해당 내용이 순차적으로 실행된 경우에 로딩된다
+		3) body 마지막에 script를 선언해서 dom객체를 호출하면 해당 메모리에
+			로딩된 상황이기 때문에 처리가능
+		4) 함수의 선언은 현재 메모리를 로딩한 상태를 기준으로 하는 것이 아니라 
+			앞으로 메모리를 로딩될 것을 예상하고 선언한다
+			선언 후 이벤트를 통해서 호출하여 처리할 수 있다.
+	
+	- 함수의 3가지 형식
+		1) 익명함수
+		2) onclick 함수
+		3) 함수선언
+
+	
+~9:20까지 제출
+*/
+
+function call() {
+	
+	var h2Obj1 = document.querySelector("h2");
+	h2Obj1.align = "center";
+}
+		
+function(obj) {
+	obj.style.background = "pink";
+}
+
+</script>
+</head>
+<body>
+
+<h1> 벌써 7월이네요 </h1>
+<hr>
+
+이름 : <input type="text"><br>
+출석여부 : 
+<input type="radio" name="day" value="출석"/> <a> O </a>
+<input type="radio" name="day" value="미출석"/> <a> X </a>
+
+<hr>
+<h2 onclick="call()"> 정의된 함수 호출</h2>
+<h2 onclick="call2(this)"> dom객체를 매개변수로 전달하는 정의된 함수 호출</h2>
+<h3> 하단에 dom객체를 통해서 처리 </h3>
+
+</body>
+<script type="text/javascript">
+var h3Obj1 = document.querySelector("h3");
+h3Obj1.innerText = "하단 DOM 내용 변경 ";
+
+h3Obj1.onclick = function() {
+	// this : 클릭한 현재 객체 = h3Obj1를 말함
+	this.style.color = "orange";
+	this.align = "center";
+}
+
+</script>
+</html>

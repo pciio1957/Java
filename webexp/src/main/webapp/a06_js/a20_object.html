@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#객체 : 사용자정의객체(json, 생성자형 함수) -> BOM, DOM
+ 	-> 이벤트와 여러가지 내장함수 적용
+1) 배열 내부에 있는 값을 요소라고 하며 객체 내부에 있는 값을 속성이라고 한다
+	배열명[index-요소]
+	객체명['속성']
+	ex) var person = {name:"홍길동", age:25, loc:"신림동"};
+		var arry = ["사과", "바나나", "딸기"];
+		속성의 호출 : person.name 
+		속성의 변경 : person.loc = "방배동" ;
+		속성의 추가 : person.auth = "관리자"; 
+		속성 설정 : person['name']; 
+			객체[속성] 형식으로 속성 설정처리 
+			
+		배열의 선언 : arry[0] 
+		배열의 할당 : arry['1'] = "오렌지";
+	
+2) 속성
+	속성은 일반적으로 객체에 기본데이터형(실수, 정수, 문자열, bool)값을
+	할당할 수 있는 것을 말한다.
+	객체에 1개 이상의 속성과 속성값을 지정할 수 있다
+	var 객체 = {};
+	객체.속성 = 속성값;
+	
+3) 메소드
+	객체의 속성 중 함수 자료형인 속성을 특별히 메소드라고 부른다
+	var 객체 = {필드:값, 메소드:function() {메소드 수행내용}}
+	객체.메소드();
+	this. : 메소드에서 현재 객체의 속성을 호출할 때 접두어로 활용
+		ex) var p01 = {name:"홍길동", show:function(){
+			// this.name 사용 가능, 자바스크립트에서는 꼭 this를 붙여야함
+		}};
+	
+4) 속성명 in 객체
+	해당 객체에서 속성이 맞는지 여부 bool값(ture/false)로 return
+	ex) var p01 = {name: '홍길동'};
+	console.log(name in p01);
+	// name이라는 속성이 p01 객체에 소속되어 있는지
+	// 여부를 boolean으로 가져오는 내용
+
+5) with 객체
+	해당 객체에 포함되어 있는 속성을 사용하는 block을 선언
+	with(객체) {
+		속성1
+		속성2
+	}
+	
+	ex) var prod = {name:"사과", price:3000, cnt:2};
+	with(prod) {
+		console.log("물건명 : " + name);
+		console.log("가격 : " + price);
+		console.log("갯수 : " + cnt);
+	}
+	
+6) 속성/메소드 추가
+	var 객체 = {}
+	객체.속성1 = 데이터1
+	객체.메소드1 = function() {}
+	
+	
+7) 속성(필드/메소드) 제거 : js는 속성을 동적으로 추가하거나 삭제가 가능하다
+	**delete(객체.속성), delete(객체['속성'])
+	delete(객체.메소드), delete(객체['메소드'])
+
+8) 배열의 동적인 추가
+	배열명[idx] = 데이터..
+	배열명.push(데이터) : 배열의 마지막부분에 데이터 추가 
+	배열명.pop() : 배열의 마지막부분에서부터 삭제 처리
+		ps) 삭제된 마지막 데이터를 return 처리함
+	
+*/
+
+
+</style>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+// 
+var p01 = {name:'홍길동'};
+console.log('name' in p01);
+
+// 
+var prod = {name:"사과", price:3000, cnt:2};
+with(prod) {
+	console.log("물건명 : " + name);
+	console.log("가격 : " + price);
+	console.log("갯수 : " + cnt);	
+}
+
+
+// 6) 속성/메소드 추가
+var airplane = {};
+airplane.target = "미국[뉴욕]";
+airplane.fly = function() {
+	// this. : 현재 객체가 가지고 있는 속성을 지칭
+	console.log(this.target + "으로 비행기를 타고 날아가다");
+}
+airplane.fly();
+
+</script>
+</html>

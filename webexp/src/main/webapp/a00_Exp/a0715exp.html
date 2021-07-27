@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+# 정리문제
+1. Number, parseInt, parseFloat의 차이점을 기술하세요.
+	숫자형 문자열을 숫자로 변환해주는 함수
+	1) Number : 숫자형으로 형변환, 문자 입력 불가
+	2) parseInt(데이터, 진수) : 숫자 정수형으로 형변환, 문자 입력 가능
+	3) parseInt : 숫자 실수형으로 형변환, 문자 입력 가능
+	
+2. 이름, 현재 몸무게, 현재 키를 단위와 함께 입력받고, 
+    +10kg,+5cm를 더한 결과값을 이름과 함께 출력하세요
+    
+3. 국어, 영어, 수학 점수를 입력 후, 평균값을 처리하여, 점수에 따른 
+    등급(A,B,C,D,E,F)의 출력하세요.(범위-0~100, 숫자형에 대한 예외를 처리하세요)
+    
+4. switch case문의 기본 형식을 기술하세요.
+	switch(데이터1) {
+		case 데이터1의 특정값 : 
+			식; break;
+		case 데이터2의 특정값 : 
+			식; 해당 데이터만 사용할 시 break; 
+			...
+		default : case 값에 해당되지 않을 때 실행
+	}
+	
+5. 엔티티타입과 엔티티의 차이와 관계를 기술하세요.
+	엔티티 : 독립적으로 존재하면서 고유하게 식별가능한 객체
+	엔티티타입 : 동일한 애트리뷰트를 가진 엔티티들의 집합으로 두 개 이상의 엔티티가 존재해야한다. 
+			DB에서 테이블로 표현이 되는 요소 
+			업무에서 필요하고 관리하려는 정보로 식별자에 의해 식별이 가능해야한다
+			엔티티타입은 다른 엔티티타입과 최소 한 개 이상의 관계가 있어야한다 
+	
+
+	엔티티
+	1) 실제 데이터 또는 레코드
+	2) 엔티티타입에 속한 인스턴스의 하나로 해당됨
+	
+	엔티티타입 
+	1) 개체 또는 데이터베이스의 테이블
+	2) 사람, 장소, 물건, 사건 그리고 개념을 정의할 수 있는 것
+	3) 정보시스템을 구현할 때 데이터베이스 테이블에 해당
+	4) 업무에 필요하고 유용한 정보를 저장하고 관리하기 위한것
+	5) 영속적으로 존재하는 엔티티의 집합
+	
+~ 09:20 까지 진행해 보시고, 더 시간 드리겠습니다
+~ 9:40분부터 풀이 
+*/
+
+</style>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+
+// 3. 이름, 현재 몸무게, 현재 키를 단위와 함께 입력받는다 
+var name = prompt("이름을 입력하세요");
+var nowWeight = parseInt(prompt("현재 몸무게를 입력하세요", "0kg"));
+var nowHeight = parseInt(prompt("현재 키를 입력하세요", "0cm"));
+
+console.log("이름 값 : " + name);
+console.log("몸무게 값 : " + nowWeight);
+console.log("키 값 : " + nowHeight);
+
+if(nowHeight != 0) {
+	if(nowWeight != 0) {
+		if(name != null) {
+			document.write("사용자 이름 : " + name + "<br>");
+		} else {
+			alert("이름을 입력하지 않았습니다");
+		}
+		document.write("사용자 현재몸무게 : " + (nowWeight+10) + "kg<br>");
+	} else if(nowWeight < 0 || nowWeight > 200) {
+		alert("뭄무게의 입력 범위를 벗어났습니다");
+	} else {
+		alert("몸무게를 입력하지 않았습니다");
+	}
+	
+	document.write("사용자 현재키 : " + (nowHeight+5) + "cm<br>");
+} else if (nowHeight < 0 || nowHeight > 300){
+	alert("키의 입력 범위를 벗어났습니다");
+} else {
+	alert("키를 입력하지 않았습니다 ");
+}
+
+// console.log("이름 : " + (name!='null'?name:'입력되지않음'));
+// console.log("몸무게 : 입력  - " + nowWeight + " +10kg - " + (parseFloat(nowWeight)+10) + "kg");
+// console.log(`키 : 입력 - ${nowHeight}, +5cm - ${parseFloat(nowHight)+5}cm`);
+
+
+
+// 4. 국어, 영어, 수학 점수 입력 후 평균값 처리 -> 등급 출력
+var kor = Number(prompt("국어점수를 입력하세요"));
+var eng = Number(prompt("영어점수를 입력하세요"));
+var math = Number(prompt("수학점수를 입력하세요"));
+var avg = parseInt((kor+eng+math)/3);
+console.log(kor+eng+math);
+
+console.log("국어 값 : " + kor);
+console.log("영어 값 : " + eng);
+console.log("수학 값 : " + math);
+
+// 입력 확인
+if(math <= 0 || math > 100) {
+	alert("수학점수 입력의 범위는 0~100입니다");
+	document.write("입력이 잘 못 되었습니다<br>");
+} else {
+	// 영어 확인
+	if(eng <= 0 || eng > 100) {
+		alert("영어점수 입력의 범위는 0~100입니다");
+		document.write("입력이 잘 못 되었습니다<br>");
+	} else {
+		// 국어 확인
+		if (kor <= 0 || kor > 100) {
+			alert("국어점수 입력의 범위는 0~100입니다");
+			document.write("입력이 잘 못 되었습니다<br>");
+		} else if (kor != isNaN) {
+			document.write("<br><hr>사용자 평균점수 : " + avg + "<br>");
+			document.write("<br><hr>사용자 등급 : ");
+			
+			// 등급 처리
+			if(avg > 90 && avg < 101) {
+				document.write("A등급<br>");
+			} else if(avg > 80) {
+				document.write("B등급<br>");
+			} else if(avg > 70) {
+				document.write("C등급<br>");
+			} else if(avg > 60) {
+				document.write("D등급<br>");
+			} else if(avg > 50) {
+				document.write("E등급<br>");
+			} else if(avg > 0){
+				
+			} else {
+				document.write("F등급<br>");
+			}
+		} 
+	}
+}
+
+// console.log("총점 : " + avg + ", isNaN : " + isNaN(avg));
+// if(isNaN(avg)) { console.log("입력은 숫자형이어야합니다 ")} 
+// else if (avg > 100 || avg < 0) { 등급 확인 }
+
+// 취소버튼을 눌렀을 때는 그냥 입력받는거, 숫자형 변경하는거 따로 변수로 할당 (Number라서?)
+// console에 취소여부를 찍어보고 아래 등급 확인시 if문 사용 
+// if(korS == 'null' || engS == 'null' || mathS == 'null')
+
+</script>
+</html>

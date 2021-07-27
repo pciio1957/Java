@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#배열과 for문
+1. js의 배열
+	var 배열명 = [데이터1, 데이터2, 데이터3... ];
+	데이터유형이 다르더라도 같은 배열에 할당할 수 있다.
+*/
+
+</style>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+var arry = [3000, 20.27, '안녕',
+			{name:'사과', price:3000},
+			function() {return '함수리턴';}];
+			
+console.log(arry[0]);
+console.log(arry[1]);
+console.log(arry[2]);
+// 객체이므로 각각 속성을 선언해줘야 확인가능
+console.log(arry[3] + " : " + arry[3].name + ", " + arry[3].price);
+// 함수이므로 함수 호출
+console.log(arry[4] + " : " + arry[4]());
+
+
+// 배열 - 값들이 String으로 나옴
+var array = [3000, 4000, 5000];
+array[3] = 7000;
+array['4'] = 9000;
+for(var idx in array) {
+	console.log("확인 " + idx + " : " + typeof(idx) + " : " + array[idx]);
+}
+
+// 응용) 배열로 물건명 3개를 선언하고, for in 구문을 이용해서 화면 테이블에 출력하기 (4, 5조)
+//		번호 물건명
+//		1	@@
+
+var prods = ["사과", "바나나", "딸기"];
+var tab = document.querySelector("#tab");
+var show5 = "<tr><th>번호</th><th>물건명</th></tr>";
+
+for(var idx in prods) {
+	show5 += "<tr><td>" + (Number(idx)+1) + "</td><td>" + prods[idx] + "</td></tr>";
+}
+tab.innerHTML = show5;
+
+</script>
+</html>

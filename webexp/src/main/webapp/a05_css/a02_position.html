@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#박스 배치 관련 position
+1. 일반적인 순서
+	1) 웹 페이지에 나타난 순서대로 html 태그 배치
+	2) position 프로퍼티를 이용하면 일반적인 순서를 무시하여 처리한다
+	
+2. position 프로퍼티를 이용한 배치 방법
+	1) 정적 배치 position : static (default)
+	2) 상대 배치 position : relative
+		왼쪽이나 상단의 요소객체 기준으로 배치
+	3) 절대 배치 position : absolute
+		화면 전체의 왼쪽 상단을 기준으로 배치 
+	4) 교정 배치 position : fixed
+		스크롤링으로 아래로 웹페이지가 가더라도 특정한 위치에 고정
+	5) 유동 배치 float : left, right 
+	
+3. 위치지정 옵션 
+	left, right, top, bottom
+	left:10px; right:20px; top:10px;  bottom:15px;
+*/
+
+div{
+	display:inline-block;
+	height:50px;
+	width:50px;
+	border:1px solid lightgray;
+	text-align:center;
+	color:white;
+	background:red;
+}
+
+#down:hover{
+	position:relative;
+	left:20px;
+	top:20px;
+	background:green
+}
+
+#up:hover{
+	position:relative;
+	right:20px;
+	bottom:20px;
+	background:green;
+}
+
+
+</style>
+</head>
+<body>
+<h3>상대 배치, relative</h3>
+<hr>
+<div>T</div>
+<div id="down">h</div>
+<div>a</div>
+<div>n</div>
+<div id="up">k</div>
+<div>s</div>
+</body>
+<script type="text/javascript">
+
+/*
+
+*/
+
+</script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#내장함수 - setTimeout(함수, 1/1000초 시간)
+1. 해당 시간 후 정의된 함수가 수행 처리하는 내장 함수
+	특정한 시간을 처리해주는 함수 
+	
+2. 메모리의 해제 
+	var 변수명 = setTimeout();
+	clearTimeout(변수명);
+	
+*/
+
+
+</style>
+</head>
+<body>
+	<h2 onclick="clickCnt(this)">클릭하세요</h2>
+	<input type="text" name="pname"/>
+	<div id="div01"></div>
+</body>
+<script type="text/javascript">
+
+/*
+// 알림창이 뜨고 3초 후 다시 알림창으로 3초가 지났다고 알려줌 
+if(confirm("시작합니다!")){
+	var time = setTimeout(function () {
+		alert("3초가 지났습니다");
+	}, 3000);
+	
+	// 자원해제 처리 - 해제해서 알림창이 안뜸
+	clearTimeout(time);
+}
+*/
+
+/*
+// 3초 이내 클릭한 횟수 출력
+var cnt = 0;
+function clickCnt(obj) {
+	obj.innerText = "클릭횟수 : " + ++cnt;
+	
+}
+
+if(confirm("시작합니다!")){
+	var time = setTimeout(function () {
+		alert("3초가 지났습니다 클릭한 수" + cnt);
+	}, 3000);
+	
+	// 자원해제 처리 - 해제해서 알림창이 안뜸
+	//clearTimeout(time);
+}
+*/
+
+// 응용) 구매물건을 입력하세요(10초이내) 10초가 지났을 때 입력한 물건명은 ###입니다 출력하기 (2조)
+//		 hint 물건명은 <input type="text" name="pname"/>
+var txtObj = document.querySelector("[name=pname]");
+var divObj = document.querySelector("#div01");
+
+if(confirm("10초 이내 구매물건을 입력하세요!")){
+	var inTime = setTimeout(function() {
+			console.log("입력" + txtObj.value)
+		if(txtObj.value != "") {
+			divObj.innerText = "-> 입력한 물건명 : " + txtObj.value;
+		} else {
+			divObj.innerText = "-> 입력하지않았습니다";
+		}
+		clearTimeout(inTime);
+	}, 10000);
+}
+
+
+</script>
+</html>

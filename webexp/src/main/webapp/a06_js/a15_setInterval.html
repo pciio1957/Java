@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+
+/*  
+#내장함수 - setInterval(반복적으로 수행할 함수, 반복적인 시간1/1000)
+1. 특정 시간마다 반복되는 작업을 수행하게 하는 함수
+ 
+*/
+
+</style>
+</head>
+<body>
+	<div id="show"></div>
+	<div id="countDown"></div>
+</body>
+<script type="text/javascript">
+/*
+var showObj = document.querySelector("#show");
+var intId = setInterval(function() {
+	var toDay = new Date();
+	showObj.innerHTML += "<h3>" + toDay.toLocaleString() + "</h3>";
+},1000);
+
+
+// clearInterval(intId) : 10초 후에 반복을 중단 처리
+// clearTimeout(setId) : 메모리 중단 처리 
+var setId = setTimeout(function() {
+	clearInterval(intId);
+	clearTimeout(setId);
+	alert("종료");
+},10000);
+
+*/
+
+/*
+// 응용) 카운트다운 10초 후 alert으로 완료 처리 (2, 3조)
+var divObj = document.querySelector("#countDown");
+var timeCount = 10;
+var intCount = setInterval(function() {
+	console.log("시간 출력 : " + timeCount);
+	divObj.innerText = "카운트다운 " + --timeCount;
+},1000);
+
+var setCount = setTimeout(function() {
+	clearInterval(intCount);
+	clearTimeout(setCount);
+	alert("발사!");
+},10000);
+
+*/
+
+// 풀이
+var divObj = document.querySelector("#countDown");
+var timeCount = 10;
+var intCount = setInterval(function() {
+	console.log("시간 출력 : " + timeCount);
+	divObj.innerText = "카운트다운 " + --timeCount;
+	
+	if(timeCount < 0) {
+		alert("발사!");
+		clearInterval(intCount);
+	}
+},1000);
+
+
+</script>
+</html>

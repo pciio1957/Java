@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+
+*/
+
+</script>
+</head>
+<body>
+<!-- 
+
+	#태그의 종류에 따른 분류 : 줄바꿈 포함 여부에 따라 나뉨
+	1. block 태그
+		해당 태그와 함께 줄바꿈 처리가 일어나는 태그를 말한다.
+		p, h1~h6, div(구역지정), ul/li
+	2. inline 태그
+		텍스트 꾸미기 관련 태그로 줄바꿈 처리가 일어나지 않는 태그를 말한다
+		a, img, span.. 
+		
+	
+ -->
+ 
+ <div id = "div01">
+ 	1구역 태그입니다 (block 태그)
+ </div>
+ <div id = "div02">
+ 	<h2> 안녕 </h2>
+ 	<p> 2구역 태그입니다 (block 태그) </p>
+ </div>
+ 
+ <ul> 
+ 	<li> 리스트입니다 (block 태그) </li>
+ 	<li> 리스트입니다 (block 태그) </li>
+ 	<li> 리스트입니다 (block 태그) </li>
+ </ul>
+ <h3> inline 태그들 (줄바꿈이 없음)</h3>
+ <a href = ""> 링크 </a>
+ <img src="img01.jpg" width = "50" height="50"/>
+ <span> span 인라인태그입니다. </span>
+ <br><br><br>
+ <div id = "div03"> 
+ 	<h2 id = "user"> 3구역 - 회원추가 </h2>
+ </div>
+ <div id = "div04"> 
+ 	<h2 id = "like"> 4구역 - 좋아요 </h2>
+ </div>
+ 
+  <div id = "div05"> 
+ 	회원명 : <input type = "text" id = "member"/>
+ 	<h2 id = "userAdd"> 5구역 - 회원추가(입력) </h2>
+ </div>
+ 
+ 	회원명 : <input type = "text" id = "member2"/>
+ 	<h2 id = "userAdd2"> 6구역 - 회원추가(입력) </h2>
+   <div id = "div06"> </div>
+ 
+ 
+</body>
+<script type="text/javascript">
+	// 밑으로 추가됨(블럭, br이 있어서)
+	var div1 = document.querySelector("#div01");
+	div1.onclick = function() {
+		this.innerHTML += "<h2> block 태그 추가 </h2>";
+	}
+	
+	// 옆으로 추가됨(inline, br없음)
+	var div2 = document.querySelector("#div02");
+	div2.onclick = function() {
+		this.innerHTML += "<span> inline 태그 추가 </span>";
+	}
+	
+	
+	// 응용) 회원추가 -> 클릭하면 h3으로 임의의 회원이름이 아래로 등록되도록 하기
+	//		좋아요 -> 클릭시 ★가 옆으로 추가되도록 처리하기
+	//  	문제에 맞게 해당 태그들 사용. 
+	
+	var div3 = document.querySelector("#div03");
+	var names =['홍길동', '고길동', '유길동'];
+	
+	var num = 0;
+	div3.onclick = function() {
+		this.innerHTML += "<h3> " + names[num++%3] + "</h3>";
+	}
+	
+	var div4 = document.querySelector("#div04");
+	div4.onclick = function() {
+		this.innerHTML += "<span> ★ </span>";
+	}
+	
+	// 응용으로 입력받아서 이름추가 - 내가 푼것
+	// div가 밖에 있고 안에 h2 아이디가 있어서 제대로 안가져와서 h2 객체를 받아옴
+	var div5 = document.querySelector("#userAdd");
+
+	div5.onclick = function() {
+		// input type = text 텍스트로 이름을 받아와서 해당내용 출력하기
+		var name = document.querySelector("#member").value;
+		this.innerHTML += "<h3> " + name + "</h3>";
+		alert(name);
+	}
+	
+	// 위에 변경되는게 있어서 6번으로 처리
+	var add = document.querySelector("#userAdd2");
+
+	add.onclick = function() {
+		// input type = text 텍스트로 이름을 받아와서 해당내용 출력하기
+		var nameObj = document.querySelector("#member2").value;
+		document.querySelector("#div06").innerHTML += "<h3>" + nameObj.value + "</h3>";
+		
+		// 초기화
+		nameObj.value = "";
+		// focus 초기화
+		nameObj.focus();
+	}
+	
+</script>
+</html>

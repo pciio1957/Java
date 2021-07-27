@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+#hyper Link 만들기
+1. hyper link란 다른 html페이지와 연결하여 
+	1) 현재 서버에 있는 html페이지의 특정 위치로 이동할 수 있을 뿐만 아니라
+		ex) a href = "a01_start.html" -> 현재 폴더에 있는 특정한 페이지로 이동
+	2) 외부 서버에 있는 페이지로 이동가능하게 한다.
+		ex) a href = "http://www.naver.com" -> 네이버로 이동
+	3) 이미지로 링크
+		ex) a href = "" -> 이미지로 이동
+
+	a href="이동할 페이지" target="페이지가 출력할 이름"	
+*/
+
+</script>
+</head>
+<body>
+<h3> 링크 만들기 </h3>
+<hr> 
+포털 사이트
+<!-- ul/li 구성되어 리스트 처리할 때 활용된다 -->
+<ul> <!-- 외부 페이지로 이동처리  -->
+	<li><a href = "http://www.naver.com">네이버</a> 
+	<li><a href = "http://www.daum.net">다음</a> 
+</ul>
+신문사이트
+<ul> <!-- 이미지로 외부사이트 연결  -->
+	<li> <a href = "http://www.etnews.com"></a>
+	<img src = "media/iconetnews.png" alt="전자신문">
+	</li>
+	<li> <a href = "http://www.chosun.com"></a>
+	<img src = "media/iconchosun.png" alt="조선일보">
+	</li>
+</ul>
+내부 사이트 
+<ul>
+	<li><a href="a01_basic.html">첫 페이지로 이동</a></li>
+	<li><a href="javascript:call('홍길동')">js 함수 호출</a></li>
+	<li><a href="javascript:go()">js 함수로 페이지 이동</a></li>
+</ul>
+
+<h2> 응용문제 풀이 </h2>
+<table border>
+<tr><th>외부페이지 이동1</th><td>동행복권<a href="http://www.dhlottery.co.kr/common.do?method=main"></a></td></tr>
+<tr><th>외부페이지 이동2</th><td>국민취업지원제도<a href="https://www.work.go.kr/kua/index.do"></a></td></tr>
+<tr><th>내부페이지 이동1</th><td onclick="gogo1()">내부 페이지 이동</a></td></tr>
+<tr><th>js내부페이지 이동2</th><td>js내부페이지 이동<a href="javascript:gogo2()"></a></td></tr>
+</table>
+</body>
+<script type="text/javascript">
+
+	function call(str) {
+		alert("js 함수 호출 : " + str);
+	}
+	
+	function go() {
+		alert("테이블 페이지로 이동");
+		location.href="a08_table.html";
+	}
+	
+	
+	// 응용) 테이블을 만들고 테이블 안에 하이퍼링크 넣기 -> 해당 내용 클릭시 이동
+	//	외부페이지 이동1 : 아는 포탈사이트1로 이동
+	// 	외부페이지 이동2 : 아는 포탈사이트2로 이동
+	//  내부페이지 이동1 : a06_img.html
+	//	js내부페이지 이동2 : a04_content.html
+	
+
+	
+	function gogo1() {
+		alert("내부페이지 이동");
+		location.href = "a06_img.html";
+	}
+	
+	function gogo2() {
+		alert("js 내부페이지 이동");
+		location.href = "a04_content.html";
+	}
+	
+</script>
+</html>

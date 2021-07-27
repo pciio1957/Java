@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+<h2 id="h2Bear"> 곰돌이가 나올까요? </h2>
+<div id="addBear"></div>
+
+<h2 id="h2Bear2"> 곰돌이가 나올까요?22 </h2>
+<table border width="500" height="500"></table>
+</body>
+<script type="text/javascript">
+
+var h2Bear = document.querySelector("#h2Bear");
+var addBear = document.querySelector("#addBear");
+
+var cnt = 1;
+h2Bear.onclick = function() {
+	var show = addBear.innerHTML;
+	show += cnt++ + "번째 곰돌이<br>" + "<img src='img01.jpg' width='100' height='100'/><br>";
+	addBear.innerHTML = show;
+}
+
+// 풀이 - 다르게 푸는 방법
+// h2Bear.onclick = function() {
+//	var show = "";
+//	for(var ct = 1; ct <= cnt; ct++) {
+//		show += "<h2>" + cnt++ + "번째 곰돌이 </h2>";
+//		show += "<img src='img01.jpg' width='100' height='100'/><br>";
+//	}
+//	h2Bear.innerHTML = show;
+// }
+
+var h2Bear2 = document.querySelector("#h2Bear2");
+var tbObj = document.querySelector("table");
+
+var bcnt=1;
+// 열단위 데이터 처리 - 위의 내용을 테이블에 추가하기 
+h2Bear2.onclick = function() {
+	var show = "<tr>";
+	for(var ct = 1; ct <= bcnt; ct++) {
+		show += "<td><h2>" + bcnt + "번째 곰돌이 </h2>";
+		show += "<img src='img01.jpg' width='100' height='100'/></td>";
+	}
+	show += "</tr>";
+	bcnt++;
+	tbObj.innerHTML = show;
+}
+
+//  응용) 행단위로 곰돌이가 밑으로 추가되어 출력되게 하기(1조)
+h2Bear2.onclick = function() {
+	var show = "";
+	for(var ct = 1; ct <= bcnt; ct++) {
+		show += "<tr><td><h2>" + bcnt + "번째 곰돌이 </h2>";
+		show += "<img src='img01.jpg' width='100' height='100'/></td></tr>";
+	}
+	show += "</tr>";
+	bcnt++;
+	tbObj.innerHTML = show;
+}
+
+// 실습) 특정한 열단위로 처리할 수 있게 처리 
+h2Bear2.onclick = function() {
+	var show = "";
+	for(var ct = 1; ct <= bcnt; ct++) {
+		
+		// count를 4로 나누어 컬럼의 수를 4개로 지정
+		if(ct%4 == 1) {
+			show += "<tr>";
+		}
+		show += "<td><h2>" + bcnt + "번째 곰돌이 </h2>";
+		show += "<img src='img01.jpg' width='100' height='100'/></td>";
+		
+		// 해당 컬럼이 4개가 되면 다음줄로 넘어갈 수 있게 마지막 닫는태그 삽입
+		if(ct%4 == 0) {
+			show += "</tr>";
+		}
+	}
+	show += "</tr>";
+	bcnt++;
+	tbObj.innerHTML = show;
+}
+
+
+</script>
+</html>

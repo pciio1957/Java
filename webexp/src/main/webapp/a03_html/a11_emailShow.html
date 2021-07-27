@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+
+<!-- 응용) [ ]@[ ][메일선택] -> 메일선택 클릭시 바로 밑에 <h3>으로 출력처리 (3조)  -->
+
+<table border>
+<tr><th>이메일</th>
+		<td><input type="text" name="email1"/>@
+		<td><input type="text" name="email2"/> 
+		<select onchange="outEmail(this)">
+		<option>직접입력</option>
+		<option>naver.com</option>
+		<option>daum.net</option>
+		<option>gmail.com</option>
+		</select>
+</td></tr>
+</table>
+<h3 name="h3Obj"> 내용 </h3>
+</body>
+<script type="text/javascript">
+
+function outEmail(obj) {
+	var emailValue = document.querySelector("[name=email1]").value;
+	var emailObj = document.querySelector("[name=email2]");
+	var h3Obj = document.querySelector("[name=h3Obj]");
+
+	
+	if(obj != "직접입력") {
+		emailObj.value = obj.value;
+	}
+	
+	var show = h3Obj.innerText;
+	
+	show += emailValue + "@" + emailObj.value ;
+	
+	h3Obj.innerHTML = show + "<br>" ;
+	
+
+
+}
+
+</script>
+</html>

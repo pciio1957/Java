@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type = "text/javascript">
+	var win = null;
+	var win2 = null;
+	var cnt = 1;
+	
+	function openWindow() {
+		// 밑에 onclick이 설정되서 누르면 윈도우창이 새로 열림!!
+		// win : window 객체 할당됨 
+		// open 앞 매개변수에 파일을 할당해서 연결가능
+		win = window.open("", "", "width = 300, height = 300");
+		win.document.write("<h2> 창문이 열림!! </h2>");
+		// cnt는 호출할 때마다 증가처리
+		cnt++;
+	}
+	
+	function goLeft() {
+		// win.moveBy(x, y) : x, y축으로 이동
+		win.moveBy(-10, 0); // 왼쪽으로 이동
+		// by : 상대위치
+		// To : 절대위치
+	}
+	
+	function goRight() {
+		// win.moveBy(x, y) : x, y축으로 이동
+		win.moveBy(10, 0); // 오른쪽으로 이동
+	}
+	
+	function Bus1() {
+		win2 = window.open("", "", "width = 100, height = 100");
+		win2.document.write("<h3> 버스가 위아래로 운행중 </h3>");
+	}
+	
+	function goUp() {
+		// 전역변수에 내용의 속성을 변경 처리
+		win2.moveBy(0, -20); // 위로
+	}
+	
+	function goDown() {
+		win2.moveBy(0, 20); // 아래로
+	}
+	
+	
+	// 응용) 로딩윈도우를 통해서 창이 100/100 정도 크기가 로딩되고 
+	// 		내용으로 Bus1 h3으로 표시, 위로/아래로 클릭시 위아래 이동이 되도록 처리하기 (4조)
+	
+</script>
+</head>
+<body>
+	<h2 onclick = "openWindow()"> 창문을 열어다오 </h2>
+	<button onclick = "goLeft()"> 왼쪽으로 </button>
+	<button onclick = "goRight()"> 오른쪽으로 </button>
+	
+	<h3 onclick = "Bus1()"> 버스 운행합니다 </h3>
+	<button onclick = "goUp()"> 업~ </button>
+	<button onclick = "goDown()"> 다운~ </button>
+</body>
+</html>

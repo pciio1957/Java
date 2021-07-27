@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<!-- form 하위의 여러가지 요소 객체들 실습 
+	
+	#단일 선택 객체
+	1. 라디오버튼 : type="radio"로 name의 속성값이 동일하면 선택할 때 하나만 선택된다. 
+	2. 콤보박스 : <select> 메뉴 <option> 안의 내용
+	
+	
+	응용) 테이블안에 (1조)
+	회원가입
+	아이디 [ ] [중복확인]
+	패스워드 [ ] 
+	성별 ()남자 ()여자 
+	휴대폰 ()KT ()SK ()LG
+	
+
+-->
+
+<h5> 회원가입과 함께하는 요소객체들 </h5>
+<table border>
+	<tr><th>이름</th><td><input type="text" name="name"/> </td></tr>
+	<tr><th>비밀번호</th><td><input type="password" name="pass"/></td></tr>
+	<tr><th>비밀번호 확인</th><td><input type="password" name="passfrm"/></td></tr>
+	<tr><th>선택(multi)</th><td>
+	<input type="checkbox" name="ch01" value="독서"/>
+	<input type="checkbox" name="ch01" value="영화감상"/>
+	<input type="checkbox" name="ch01" value="운동"/>
+	</td></tr>
+
+	<tr>
+	<tr><th> 단일 선택 메뉴별 1개까지 </th><td>
+		<input type="radio" name="china" value="1"> 짜장면 <br>
+		<input type="radio" name="china"  value="2"> 짬뽕 <br>
+		<input type="radio" name="china"  value="3"> 탕수육 <br>
+		<input type="radio" name="bev" value="1"> 사이다 <br>
+		<input type="radio" name="bev"  value="2"> 콜라 <br>
+		<input type="radio" name="bev"  value="3"> 환타 <br>
+		</td>
+	</tr>
+	<tr><th>버튼</th><td><input type="button" name="btn" value="클릭하세요"/></td>
+	<tr><th>콤보박스 선택</th>
+		<td>
+			<select name="loc">
+			<option> 서울 </option>
+			<option> 대전 </option>
+			<option> 대구 </option>
+			<option> 부산 </option>
+			</select>
+</table>
+
+<!--  form으로 전체 내용을 감싸면 하위에 있는 모든 요소객체의 입력값을 전송할 수 있다.
+		width : 전체 화면에서 해당 테이블의 비율을 설정할 수 있다. 
+			두개의 열을 확보한 상태에서 th(table header) 부분에 대해
+			넓이를 30% 확보 처리(테이블 전체에서 30%를 의미) -->
+<h3> 회원가입  </h3>
+<table border>
+<tr><th width="30%">  ID  </th><td><input type="text" name="id"/> <input type="button" onclick="ckDupl()" value="중복확인"/></td></tr>
+<tr><th>PASS  </th>
+	<td>
+		<input type="password" name="jpass"/>
+		<input type="password" name="jpassfrm"/>
+		<input type="button" onclick="ckPass()" value="동일여부확인"/>
+	</td>
+</tr>
+<tr><th>성별</th><td>
+<!-- radio의 경우 default로 checked로 설정가능함 -->
+<input type="checkbox" name="gender" value="1"/>남자
+<input type="checkbox" name="gender" value="2" checked/>여자
+</td>
+<tr><th>이메일</th>
+	<td>
+		<input type="text" name="email1"/> @
+		<input type="text" name="email2"/>
+		<!-- select를 변경했을 때 호출할 함수 지정
+		onchange="함수()"
+		함수(this) : 이벤트가 처리된 객체자체를 함수의 매개변수로 전달한다. -->
+		<select onchange="emailCk(this)">
+		<option>직접입력</option>
+		<option>naver.com</option>
+		<option>daum.net</option>
+		<option>gamil.com</option>
+		</select>
+		<span id="showMail"></span>
+</td></tr>
+<tr><th>주소</th>
+	<td>
+		<input type="text" name="address"/>
+		<input type="button" value="주소찾기" 
+			onclick="callAddress()"/>
+<tr><th>휴대폰</th><td>
+<input type="checkbox" name="hp" value="1"/>KT
+<input type="checkbox" name="hp" value="2"/>SK
+<input type="checkbox" name="hp" value="3"/>LG
+ 
+<select name="num">
+<option>010</option>
+<option>011</option>
+<option>070</option>
+</select>
+
+<input type="text" name="num2"> - <input type="text" name="num3">
+</td></tr>
+<tr><td align="center">  </td>
+<td align="center"><input type="submit" name="join" value="가입"/>  <input type="button" name="re" value="다시입력"/></td></tr>
+</table>
+</body>
+<script type="text/javascript">
+
+// ID 중복확인 함수
+function ckDupl() {
+	// alert("함수 호출");
+	// 입력된 id 확인
+	var idVal = document.querySelector("[name=id]").value;
+	// 확인 : alert("입력한 id의 값 : " + idVal);
+	
+	/*
+		유효성체크에서 글자수 확인까지 
+		idVal.length : 글자수 확인
+		
+		var len = idVal.length;
+		if(len>= 8 && len <=16) {
+			유효값 확인	
+		} else {
+			alert("아이디는 8자~16자 사이입니다");	
+		}
+	*/
+	
+	// 임의로 DB에 himan이 있다고 가정하고 유효성체크
+	if(idVal != "") {
+		if(idVal == "himan") {
+			// ajax는 자바자체로 서버에 접속할 수 있게 하는 언어로 그때는 실시간으로 가능한가봄 
+			alert("등록된 아이디가 있습니다");
+		} else {
+			alert("해당 아이디는 등록가능합니다.");
+		}
+	}else {
+		alert("아이디를 입력하세요");
+	}
+	
+	/*
+		응용) 회원가입시 비밀번호의 유효성체크 
+			이전에 입력한 비밀번호와 비밀번호 확인 내용이 동일한지 여부 확인 (1조, 2조)
+
+			hint) function ckPass() {
+				name=pass와 name=passfrm의 값을 비교하여 동일여부를 조건으로 나타낸다
+				var passVal = document.querySelector("[name=pass]");
+				
+			}
+	
+	*/
+	
+	
+	
+}
+
+
+function ckPass() {
+	var passVal = document.querySelector("[name=jpass]").value;
+	var passfrmVal = document.querySelector("[name=jpassfrm]").value;
+	
+	if(passVal != "" && passfrmVal != "") {
+		if(passVal == passfrmVal) {
+			alert("비밀번호가 동일합니다");
+		} else {
+			alert("비밀번호가 다릅니다");
+		}
+	} else {
+		alert("비밀번호를 입력해주세요");
+	}
+}
+
+
+function emailCk(obj) {
+	alert("이메일 선택"+obj.value);
+	// 1. 첫번째 email 내용
+	var emailValue = document.querySelector("[name=email1]").value;
+	
+	
+	// 2. 두번째 email 내용
+	// 선택한 메일 서버주소를 email2Obj의 value값에 할당
+	var email2Obj = document.querySelector("[name=email2]");
+
+	// 선택한 email의 value값
+	if(obj.value != "직접입력") {
+		email2Obj.value = obj.value;
+	}
+	
+	// 3. 선택한 메일 
+	// span인 form하위의 요소객체가 아니라 출력내용은 innerText를 활용함
+	// 그래서 위에 입력하고 선택한 최종 메일주소를 해당 내용으로 출력한다.
+	document.querySelector("#showMail").innerText
+		= emilValue + "@" + email2Obj.value;
+}
+
+
+// 윈도우창 띄우기 
+function callAddress() {
+	var win = window.open("", "", "width=300, height=300");
+	win.moveTo(400,400);
+	win.document.write("<h3>주소선택</h3>");
+}
+
+</script>
+</html>

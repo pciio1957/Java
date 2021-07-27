@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/*
+	
+4. css의 상대적 크기단위와 절대적 크기 단위의 예를 2가지씩 기술해 보세요.
+	1) 상대적 크기단위
+		%(퍼센트), em(상대적크기)
+	2) 절대적 크기 단위
+		픽셀(px), 인치(in), cm, mm, pt
+
+5. font-XXXX 제어 속성을 기본예제와 함께 기술하세요.
+	1) font-family
+		serlf 형 : 끝부분에 각진 표시가 있는 서체
+		Sans-serif형 : serif 없는 서체
+		monospace형 : 글자폭이 동일한 서체
+		궁서체, 고딕, 굴림, 맑은 고딕, arial, Times New Roman
+		ex) font-family:arial, "Times New Roman", Serif;
+
+	2) font-size 
+		: 폰트의 크기 속성 
+		ex) font-size:40px;
+
+	3) font-style 
+		: 주로 폰트의 기울임체 설정
+		ex) font-style:italic; : 기울임 설정
+
+	4) font-weight 
+		: 폰트의 굵기
+		light, bold, px단위로 설정가능
+		ex) font-weight : 300; 
+			font-weight : bold;
+		
+6. 박스 모델의 기본 속성과 접미어를 통한 기본 속성을 예제로 기술하세요.
+	html 태그는 사각형 형태로 이루어져 각 태그 요소를 박스로 다룬다
+	[1] 박스 모델의 기본 속성
+		1) 컨텐츠 
+			html 태그의 텍스트나 이미지가 출력되는 부분
+		2) 패딩(padding) - 굵기, 방향
+			컨텐츠를 직접 둘러싸고 있는 내부 여백
+		3) 테두리(border) - 굵기, 색상, 형태, 방향
+			패딩 외부의 테두리로서 직선이나 점선 혹은 이미지로 테두리를 그릴 수 있음
+		4) 여백(margin) - 굵기, 방향 
+			박스의 맨 바깥 영역이며 테두리 바깥의 공간으로 인접한 아래 위 아웃 태그와 박스의 거리 
+		5) 기타 
+			width, height, background-color
+			
+	 [2] 기본 속성의 구성(접미어)
+		사용방법 
+		속성  
+			ex) padding, border, margin
+		속성-접미어1
+			ex) padding-top, border-width
+		속성-접미어1-접미어2 
+			ex) border-top-width
+		위의 박스의 구성요소와 접미어를 조합 후 선언해서 사용함
+		
+		1) top, bottom, right, left
+			상하좌우 다 해당되는 구성요소
+			ex) padding-top, margin-top, border-top-width
+		2) border 관련 접미어
+			width, style, color
+			굵기, 선형태, 색상
+			ex) border-width, border-style, border-color
+			border-top-width, border-left-style, border-bottom-color
+	
+7. border의 속성을 기능 버튼 3개(굵기, 스타일, 색상)에 의해 기술하세요(js)
+	border 속성
+	border:굵기 형태 색상;
+	border-style의 속성들
+		hidden : border를 보이지않게 함
+		dotted : 점선모양
+		dashed : ---모양
+		double : 이중선
+		
+		-- 빛을 비추는 기준으로 2D 형태 화면출력
+		왼쪽 위에서 비추는 기준
+		ridge, 
+		오른쪽 아래에서 비추는 기준 
+		groove, 
+
+
+~ 9:20까지 제출해주세요~~^^
+
+*/
+
+</script>
+<style type="text/css">
+
+h2{
+	font-family:'궁서체',Serif;
+	font-size:15px;
+	font-style:italic;
+	font-weight:300;
+}
+
+div:first-child{
+	border:2px solid red;
+	padding:40px;
+	margin:30px;
+}
+
+h2{
+	border:1px solid red;
+}
+
+</style>
+</head>
+<body>
+
+<h2> 정리문제 풀이중입니다 </h2>
+
+<div>
+	마지막문제
+	<input type="button" onclick="changed()" value="굵기">
+	<input type="button" onclick="changed()" value="스타일">
+	<input type="button" onclick="changed()" value="색상">
+</div>
+
+</body>
+<script type="text/javascript">
+
+function changed() {
+	var btns = document.querySelectorAll("[type=button]");
+	var divObj = document.querySelector("div");
+	
+	
+	btns[0].onclick = function() {
+		divObj.style.borderWidth = "30px";
+	}
+	
+	btns[1].onclick = function() {
+		divObj.style.borderStyle = "double";
+	}
+	
+	btns[2].onclick = function() {
+		divObj.style.borderColor = "navy";
+	}
+	
+}
+
+</script>
+</html>
